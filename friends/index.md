@@ -5,5 +5,5 @@ title: Friends
 
 ## You could find some interesting guys here
 
-* [Huaiming Yu](https://www.hmyuuu.top/)
-* [Dongqi Liu](https://potassium.site)
+* [hmyuuu](https://www.hmyuuu.top/)
+* [Louis Liu](https://potassium.site)
