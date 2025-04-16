@@ -24,6 +24,7 @@
             border: 1px solid #ccc;
             box-sizing: border-box;
             overflow: hidden; /* 去掉滚动条 */
+            display: none; /* 初始隐藏所有窗口 */
         }
 
         .resizer {
@@ -64,10 +65,12 @@
             display: inline-block;
         }
 
+        /* 确保窗口1在一开始是可见的 */
         #window1 {
             top: 100px;
             left: 100px;
             background-image: url('/assets/img/image1.jpg');
+            display: block; /* 窗口1默认显示 */
         }
 
         #window2 {
@@ -80,31 +83,51 @@
             top: 100px;
             left: 1000px;
         }
+
+        #window4 {
+            top: 300px;
+            left: 300px;
+            width: 600px;
+            height: 400px;
+            color: white; /* 白色字体 */
+            display: block; /* 默认显示 */
+            border: 1px solid #ccc;
+            font-family: 'Lucida Console', Monaco, monospace; /* 等宽字体 */
+        }
     </style>
     <script>
+        let highestZIndex = 1; // Track the highest z-index
+
         window.onload = function() {
-            adjustWindowToImage('window1', '/assets/img/image1.jpg');
-            adjustWindowToImage('window2', '/assets/img/windows2.png');
-            adjustWindowToImage('window3', '/assets/img/windows1.png');
+            // 窗口1在页面加载后自动显示
+            adjustWindowToImage('window1', '/assets/img/image1.jpg', false);
+            // 窗口2和3在图片加载完成后显示
+            adjustWindowToImage('window2', '/assets/img/windows2.png', true);
+            adjustWindowToImage('window3', '/assets/img/windows1.png', true);
             enableDrag('window1');
             enableDrag('window2');
             enableDrag('window3');
+            enableDrag('window4');
             enableResize('window1');
             enableResize('window2');
             enableResize('window3');
+            enableResize('window4');
             enableClose('window1');
             enableClose('window2');
             enableClose('window3');
-            setupButtonsForWindow('window1'); // 绑定按钮事件到特定窗口
+            enableClose('window4');
         };
 
-        function adjustWindowToImage(windowId, imageUrl) {
+        function adjustWindowToImage(windowId, imageUrl, showAfterLoad) {
             const img = new Image();
             img.src = imageUrl;
             img.onload = function() {
                 const element = document.getElementById(windowId);
                 element.style.width = img.width + 'px';
                 element.style.height = img.height + 'px';
+                if (showAfterLoad) {
+                    element.style.display = 'block';
+                }
             };
         }
 
@@ -114,8 +137,9 @@
             let isDragging = false;
 
             element.onmousedown = function(e) {
-                if (e.target.classList.contains('resizer')) return; // Skip if resizer is clicked
+                if (e.target.classList.contains('resizer') || e.target.classList.contains('btn')) return; // Skip if resizer or button is clicked
                 e.preventDefault();
+                bringToFront(element); // Bring to front on click
                 startX = e.clientX;
                 startY = e.clientY;
                 offsetX = element.offsetLeft;
@@ -160,24 +184,28 @@
 
             function initResize(e) {
                 e.preventDefault();
+                bringToFront(element); // Bring to front on resize
+                const startWidth = element.offsetWidth;
+                const startHeight = element.offsetHeight;
+                const startX = e.clientX;
+                const startY = e.clientY;
+
+                function resize(e) {
+                    if (e.target.classList.contains('right') || e.target.classList.contains('corner')) {
+                        element.style.width = Math.max(100, startWidth + (e.clientX - startX)) + 'px';
+                    }
+                    if (e.target.classList.contains('bottom') || e.target.classList.contains('corner')) {
+                        element.style.height = Math.max(100, startHeight + (e.clientY - startY)) + 'px';
+                    }
+                }
+
+                function stopResize() {
+                    window.removeEventListener('mousemove', resize);
+                    window.removeEventListener('mouseup', stopResize);
+                }
+
                 window.addEventListener('mousemove', resize);
                 window.addEventListener('mouseup', stopResize);
-            }
-
-            function resize(e) {
-                if (e.target.classList.contains('right')) {
-                    element.style.width = (e.clientX - element.getBoundingClientRect().left) + 'px';
-                } else if (e.target.classList.contains('bottom')) {
-                    element.style.height = (e.clientY - element.getBoundingClientRect().top) + 'px';
-                } else if (e.target.classList.contains('corner')) {
-                    element.style.width = (e.clientX - element.getBoundingClientRect().left) + 'px';
-                    element.style.height = (e.clientY - element.getBoundingClientRect().top) + 'px';
-                }
-            }
-
-            function stopResize() {
-                window.removeEventListener('mousemove', resize);
-                window.removeEventListener('mouseup', stopResize);
             }
         }
 
@@ -189,30 +217,8 @@
             };
         }
 
-        function setupButtonsForWindow(windowId) {
-            const windowElement = document.getElementById(windowId);
-            const maxButton = windowElement.querySelector('.btn_max');
-            const minButton = windowElement.querySelector('.btn_min');
-
-            function maximize() {
-                windowElement.style.width = '100%';
-                windowElement.style.height = '100%';
-                windowElement.style.left = '0';
-                windowElement.style.top = '0';
-            }
-
-            function minimize() {
-                const postContent = windowElement.querySelector('.post_content');
-                const width = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName("body")[0].clientWidth;
-
-                if (width > 900) {
-                    windowElement.style.width = "800px";
-                    postContent.style.width = "98.5%";
-                }
-            }
-
-            maxButton.addEventListener('click', maximize, false);
-            minButton.addEventListener('click', minimize, false);
+        function bringToFront(element) {
+            element.style.zIndex = ++highestZIndex; // Increment z-index and assign to element
         }
     </script>
 </head>
@@ -239,7 +245,7 @@
                     <ul>
                         
                         
-                        <li><a href="/tag/tag1/" title="tag1"><img src="/assets/img/folder.ico" />tag1</a></li>
+                        <li><a href="/tag/whoami/" title="whoami"><img src="/assets/img/folder.ico" />whoami</a></li>
                         
                     </ul>
                 </li>
@@ -302,13 +308,13 @@
     <div class="content" id="window2">
         <div class="post_title">
             <img src="/assets/img/file.png" />
-            <h1>窗口2标题</h1>
+            <h1>ERROR</h1>
             <div class="btn btn-close"><span class="fa fa-times"></span></div> <!-- 关闭按钮 -->
             <div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
             <div class="btn btn_min"><span class="fa fa-window-minimize"></span></div>
         </div>
         <ul class="topbar">
-            <li>日期信息</li>
+            <li></li>
         </ul>
         <div class="post_content">
             <img src="/assets/img/windows2.png" alt="窗口2图片">
@@ -319,16 +325,39 @@
     <div class="content" id="window3">
         <div class="post_title">
             <img src="/assets/img/file.png" />
-            <h1>窗口3标题</h1>
+            <h1>ERROR</h1>
             <div class="btn btn-close"><span class="fa fa-times"></span></div> <!-- 关闭按钮 -->
             <div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
             <div class="btn btn_min"><span class="fa fa-window-minimize"></span></div>
         </div>
         <ul class="topbar">
-            <li>其他日期信息</li>
+            <li></li>
         </ul>
         <div class="post_content">
             <img src="/assets/img/windows1.png" alt="窗口3图片">
+        </div>
+    </div>
+
+    <!-- 第四个窗口：模拟Windows蓝屏 -->
+    <div class="content" id="window4">
+        <div class="post_title">
+            <img src="/assets/img/file.png" />
+            <h1>Windows ERROR</h1>
+            <div class="btn btn-close"><span class="fa fa-times"></span></div> <!-- 关闭按钮 -->
+        </div>
+        <div class="post_content" style="background-color: #1E90FF; color: white; padding: 20px;">
+            <h2>:(</h2>
+            <p>Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</p>
+            <p>If you'd like to know more, you can search online later for this error: INACCESSIBLE_BOOT_DEVICE</p>
+            <pre>
+*** STOP: 0x0000007B (0xFFFFF880009A9928, 0xFFFFFFFFC0000034, 0x0000000000000000, 0x0000000000000000)
+            </pre>
+            <p>Collecting data for crash dump ...</p>
+            <p>Initializing disk for crash dump ...</p>
+            <p>Beginning dump of physical memory.</p>
+            <p>Dumping physical memory to disk: 100</p>
+            <p>Physical memory dump complete.</p>
+            <p>Contact your system administrator or technical support group for further assistance.</p>
         </div>
     </div>
     

@@ -24,6 +24,7 @@
             border: 1px solid #ccc;
             box-sizing: border-box;
             overflow: hidden; /* 去掉滚动条 */
+            display: none; /* 初始隐藏所有窗口 */
         }
 
         .resizer {
@@ -64,10 +65,12 @@
             display: inline-block;
         }
 
+        /* 确保窗口1在一开始是可见的 */
         #window1 {
             top: 100px;
             left: 100px;
             background-image: url('/assets/img/image1.jpg');
+            display: block; /* 窗口1默认显示 */
         }
 
         #window2 {
@@ -80,31 +83,51 @@
             top: 100px;
             left: 1000px;
         }
+
+        #window4 {
+            top: 300px;
+            left: 300px;
+            width: 600px;
+            height: 400px;
+            color: white; /* 白色字体 */
+            display: block; /* 默认显示 */
+            border: 1px solid #ccc;
+            font-family: 'Lucida Console', Monaco, monospace; /* 等宽字体 */
+        }
     </style>
     <script>
+        let highestZIndex = 1; // Track the highest z-index
+
         window.onload = function() {
-            adjustWindowToImage('window1', '/assets/img/image1.jpg');
-            adjustWindowToImage('window2', '/assets/img/windows2.png');
-            adjustWindowToImage('window3', '/assets/img/windows1.png');
+            // 窗口1在页面加载后自动显示
+            adjustWindowToImage('window1', '/assets/img/image1.jpg', false);
+            // 窗口2和3在图片加载完成后显示
+            adjustWindowToImage('window2', '/assets/img/windows2.png', true);
+            adjustWindowToImage('window3', '/assets/img/windows1.png', true);
             enableDrag('window1');
             enableDrag('window2');
             enableDrag('window3');
+            enableDrag('window4');
             enableResize('window1');
             enableResize('window2');
             enableResize('window3');
+            enableResize('window4');
             enableClose('window1');
             enableClose('window2');
             enableClose('window3');
-            setupButtonsForWindow('window1'); // 绑定按钮事件到特定窗口
+            enableClose('window4');
         };
 
-        function adjustWindowToImage(windowId, imageUrl) {
+        function adjustWindowToImage(windowId, imageUrl, showAfterLoad) {
             const img = new Image();
             img.src = imageUrl;
             img.onload = function() {
                 const element = document.getElementById(windowId);
                 element.style.width = img.width + 'px';
                 element.style.height = img.height + 'px';
+                if (showAfterLoad) {
+                    element.style.display = 'block';
+                }
             };
         }
 
@@ -114,8 +137,9 @@
             let isDragging = false;
 
             element.onmousedown = function(e) {
-                if (e.target.classList.contains('resizer')) return; // Skip if resizer is clicked
+                if (e.target.classList.contains('resizer') || e.target.classList.contains('btn')) return; // Skip if resizer or button is clicked
                 e.preventDefault();
+                bringToFront(element); // Bring to front on click
                 startX = e.clientX;
                 startY = e.clientY;
                 offsetX = element.offsetLeft;
@@ -160,24 +184,28 @@
 
             function initResize(e) {
                 e.preventDefault();
+                bringToFront(element); // Bring to front on resize
+                const startWidth = element.offsetWidth;
+                const startHeight = element.offsetHeight;
+                const startX = e.clientX;
+                const startY = e.clientY;
+
+                function resize(e) {
+                    if (e.target.classList.contains('right') || e.target.classList.contains('corner')) {
+                        element.style.width = Math.max(100, startWidth + (e.clientX - startX)) + 'px';
+                    }
+                    if (e.target.classList.contains('bottom') || e.target.classList.contains('corner')) {
+                        element.style.height = Math.max(100, startHeight + (e.clientY - startY)) + 'px';
+                    }
+                }
+
+                function stopResize() {
+                    window.removeEventListener('mousemove', resize);
+                    window.removeEventListener('mouseup', stopResize);
+                }
+
                 window.addEventListener('mousemove', resize);
                 window.addEventListener('mouseup', stopResize);
-            }
-
-            function resize(e) {
-                if (e.target.classList.contains('right')) {
-                    element.style.width = (e.clientX - element.getBoundingClientRect().left) + 'px';
-                } else if (e.target.classList.contains('bottom')) {
-                    element.style.height = (e.clientY - element.getBoundingClientRect().top) + 'px';
-                } else if (e.target.classList.contains('corner')) {
-                    element.style.width = (e.clientX - element.getBoundingClientRect().left) + 'px';
-                    element.style.height = (e.clientY - element.getBoundingClientRect().top) + 'px';
-                }
-            }
-
-            function stopResize() {
-                window.removeEventListener('mousemove', resize);
-                window.removeEventListener('mouseup', stopResize);
             }
         }
 
@@ -189,30 +217,8 @@
             };
         }
 
-        function setupButtonsForWindow(windowId) {
-            const windowElement = document.getElementById(windowId);
-            const maxButton = windowElement.querySelector('.btn_max');
-            const minButton = windowElement.querySelector('.btn_min');
-
-            function maximize() {
-                windowElement.style.width = '100%';
-                windowElement.style.height = '100%';
-                windowElement.style.left = '0';
-                windowElement.style.top = '0';
-            }
-
-            function minimize() {
-                const postContent = windowElement.querySelector('.post_content');
-                const width = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName("body")[0].clientWidth;
-
-                if (width > 900) {
-                    windowElement.style.width = "800px";
-                    postContent.style.width = "98.5%";
-                }
-            }
-
-            maxButton.addEventListener('click', maximize, false);
-            minButton.addEventListener('click', minimize, false);
+        function bringToFront(element) {
+            element.style.zIndex = ++highestZIndex; // Increment z-index and assign to element
         }
     </script>
 </head>
@@ -239,7 +245,7 @@
                     <ul>
                         
                         
-                        <li><a href="/tag/tag1/" title="tag1"><img src="/assets/img/folder.ico" />tag1</a></li>
+                        <li><a href="/tag/whoami/" title="whoami"><img src="/assets/img/folder.ico" />whoami</a></li>
                         
                     </ul>
                 </li>
@@ -250,7 +256,7 @@
             
             <ul>
 	
-	<li><a href="/20250402/whoami" title="About Me"><img src="/assets/img/file.ico" title="About Me" />About Me</a></li>
+	<li><a href="/20250402/whoami" title="WHOAMI"><img src="/assets/img/file.ico" title="WHOAMI" />WHOAMI</a></li>
 	
 	<li><a href="/20250402/CV" title="My CV"><img src="/assets/img/file.ico" title="My CV" />My CV</a></li>
 	
