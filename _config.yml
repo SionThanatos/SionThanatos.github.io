@@ -1,6 +1,6 @@
 permalink: /:year:month:day/:title
-url: #Your url here
-baseurl: /project
+url: #localhost:4000
+baseurl: #/project
 
 # variables
 name: Sion Tian's Webpage
