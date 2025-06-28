@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="google-site-verification" content="7RgKblCChdoNgJ-7hDUy24EQ9AAdBkIs_tSw6taMrR4" />
@@ -16,6 +16,63 @@
     <script src="/assets/js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <style>
+
+.desktop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 30px);
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            z-index: 0;
+        }
+
+        .desktop-icon {
+            width: 80px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .desktop-icon:hover {
+            background: #000080;
+            color: white;
+        }
+
+        .desktop-icon:active {
+            background: #808080;
+            color: white;
+        }
+
+        .desktop-icon-img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 4px;
+        }
+
+        .desktop-icon-label {
+            font-size: 11px;
+            word-break: break-all;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: calc(100vh - 30px);
+        }
+
+
+
+
+
         .content {
             position: absolute;
             padding: 5px;
@@ -23,8 +80,8 @@
             background-position: center;
             border: 1px solid #ccc;
             box-sizing: border-box;
-            overflow: hidden; /* 去掉滚动条 */
-            display: none; /* 初始隐藏所有窗口 */
+            overflow: hidden;
+            display: none;
         }
 
         .resizer {
@@ -65,18 +122,17 @@
             display: inline-block;
         }
 
-        /* 确保窗口1在一开始是可见的 */
         #window1 {
             top: 100px;
             left: 100px;
             background-image: url('/assets/img/image1.jpg');
-            display: block; /* 窗口1默认显示 */
+            display: block;
         }
 
         #window2 {
             top: 200px;
             left: 500px;
-            background-image: none; /* 不使用背景图 */
+            background-image: none;
         }
 
         #window3 {
@@ -89,33 +145,156 @@
             left: 300px;
             width: 600px;
             height: 400px;
-            color: white; /* 白色字体 */
-            display: block; /* 默认显示 */
+            color: white;
+            display: block;
             border: 1px solid #ccc;
-            font-family: 'Lucida Console', Monaco, monospace; /* 等宽字体 */
+            font-family: 'Lucida Console', Monaco, monospace;
+        }
+
+        #wrapperWindow {
+            top: 150px;
+            left: 150px;
+            display: block;
+            z-index: 10;
+        }
+
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: #c0c0c0;
+            border-top: 2px solid #dfdfdf;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            z-index: 1000;
+        }
+
+        .start-btn {
+            height: 24px;
+            padding: 0 10px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #808080 #808080 #dfdfdf;
+            box-shadow: 1px 1px 0 0 #000;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .start-btn:active {
+            border-color: #808080 #dfdfdf #dfdfdf #808080;
+            box-shadow: inset 1px 1px 0 0 #000;
+        }
+
+        .taskbar-items {
+            display: flex;
+            margin-left: 10px;
+            gap: 5px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .taskbar-item {
+            padding: 0 10px;
+            height: 24px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #808080 #808080 #dfdfdf;
+            box-shadow: 1px 1px 0 0 #000;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
+
+        .taskbar-item:active {
+            border-color: #808080 #dfdfdf #dfdfdf #808080;
+            box-shadow: inset 1px 1px 0 0 #000;
+        }
+
+        .taskbar-item.active {
+            border-color: #808080 #dfdfdf #dfdfdf #808080;
+            box-shadow: inset 1px 1px 0 0 #000;
+        }
+
+        .clock {
+            padding: 0 10px;
+            font-size: 12px;
+            border: 1px solid;
+            border-color: #808080 #dfdfdf #dfdfdf #808080;
+            height: 22px;
+            display: flex;
+            align-items: center;
+        }
+
+        #startMenu {
+            position: fixed;
+            bottom: 30px;
+            left: 5px;
+            width: 200px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #808080 #808080 #dfdfdf;
+            box-shadow: 1px 1px 0 0 #000;
+            z-index: 1000;
+        }
+
+        #startMenu .menu-dropdown-item {
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+
+        #startMenu .menu-dropdown-item:hover {
+            background: #000080;
+            color: white;
+        }
+
+        #startMenu .menu-dropdown-separator {
+            height: 1px;
+            background: #808080;
+            margin: 2px 0;
+            border-top: 1px solid #dfdfdf;
         }
     </style>
     <script>
-        let highestZIndex = 1; // Track the highest z-index
+        let highestZIndex = 1;
 
         window.onload = function() {
-            // 窗口1在页面加载后自动显示
             adjustWindowToImage('window1', '/assets/img/image1.jpg', false);
-            // 窗口2和3在图片加载完成后显示
             adjustWindowToImage('window2', '/assets/img/windows2.png', true);
             adjustWindowToImage('window3', '/assets/img/windows1.png', true);
             enableDrag('window1');
             enableDrag('window2');
             enableDrag('window3');
             enableDrag('window4');
+            enableDrag('wrapperWindow');
             enableResize('window1');
             enableResize('window2');
             enableResize('window3');
             enableResize('window4');
+            enableResize('wrapperWindow');
             enableClose('window1');
             enableClose('window2');
             enableClose('window3');
             enableClose('window4');
+            enableClose('wrapperWindow');
+
+            // Prevent default behavior for buttons inside wrapperWindow
+            document.querySelectorAll('#wrapperWindow .btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            });
         };
 
         function adjustWindowToImage(windowId, imageUrl, showAfterLoad) {
@@ -137,14 +316,15 @@
             let isDragging = false;
 
             element.onmousedown = function(e) {
-                if (e.target.classList.contains('resizer') || e.target.classList.contains('btn')) return; // Skip if resizer or button is clicked
+                if (e.target.classList.contains('resizer') || e.target.classList.contains('btn')) return;
                 e.preventDefault();
-                bringToFront(element); // Bring to front on click
+                bringToFront(element);
                 startX = e.clientX;
                 startY = e.clientY;
                 offsetX = element.offsetLeft;
                 offsetY = element.offsetTop;
                 isDragging = true;
+                console.log(`Starting drag on ${elementId} at (${startX}, ${startY})`);
                 document.onmousemove = moveElement;
                 document.onmouseup = stopMovingElement;
             };
@@ -156,12 +336,14 @@
                 const dy = e.clientY - startY;
                 element.style.left = (offsetX + dx) + "px";
                 element.style.top = (offsetY + dy) + "px";
+                console.log(`Dragging ${elementId} to (${element.style.left}, ${element.style.top})`);
             }
 
             function stopMovingElement() {
                 isDragging = false;
                 document.onmousemove = null;
                 document.onmouseup = null;
+                console.log(`Stopped dragging ${elementId}`);
             }
         }
 
@@ -184,7 +366,7 @@
 
             function initResize(e) {
                 e.preventDefault();
-                bringToFront(element); // Bring to front on resize
+                bringToFront(element);
                 const startWidth = element.offsetWidth;
                 const startHeight = element.offsetHeight;
                 const startX = e.clientX;
@@ -218,19 +400,80 @@
         }
 
         function bringToFront(element) {
-            element.style.zIndex = ++highestZIndex; // Increment z-index and assign to element
+            element.style.zIndex = ++highestZIndex;
         }
+
+        // Start menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const startBtn = document.querySelector('.start-btn');
+            startBtn.addEventListener('click', function() {
+                startBtn.classList.toggle('active');
+                const startMenu = document.getElementById('startMenu');
+                if (startMenu.style.display === 'block') {
+                    startMenu.style.display = 'none';
+                } else {
+                    startMenu.style.display = 'block';
+                }
+            });
+
+            const startMenuItems = document.querySelectorAll('#startMenu .menu-dropdown-item');
+            startMenuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    alert(`选择了: ${item.innerText}`);
+                    document.getElementById('startMenu').style.display = 'none';
+                    startBtn.classList.remove('active');
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.start-btn, #startMenu')) {
+                    document.getElementById('startMenu').style.display = 'none';
+                    startBtn.classList.remove('active');
+                }
+            });
+        });
     </script>
+
+
+<!--
 </head>
 <body>
-    <div class="wrapper">
-        <div class="default_title">
-            <img src="/assets/img/mycomputer.png" />
-            
-            <h1>Sion Tian's Webpage</h1>
-            
+
+    <div class="desktop">
+        <div class="desktop-icon" data-type="computer" data-name="我的电脑">
+            <div class="desktop-icon-img">💻</div>
+            <div class="desktop-icon-label">我的电脑</div>
         </div>
-        <ul class="topbar">
+        <div class="desktop-icon" data-type="folder" data-name="我的文档">
+            <div class="desktop-icon-img">📁</div>
+            <div class="desktop-icon-label">我的文档</div>
+        </div>
+        <div class="desktop-icon" data-type="image" data-name="蓝天白云">
+            <div class="desktop-icon-img">🖼️</div>
+            <div class="desktop-icon-label">蓝天白云.bmp</div>
+        </div>
+        <div class="desktop-icon" data-type="notepad" data-name="记事本">
+            <div class="desktop-icon-img">📝</div>
+            <div class="desktop-icon-label">记事本</div>
+        </div>
+        <div class="desktop-icon" data-type="recycle" data-name="回收站">
+            <div class="desktop-icon-img">🗑️</div>
+            <div class="desktop-icon-label">回收站</div>
+        </div>
+    </div>
+
+
+-->
+    
+<div class="content" id="wrapperWindow">
+    <div class="post_title">
+        <img src="/assets/img/mycomputer.png" />
+        <h1>Sion Tian's Webpage</h1>
+        <div class="btn btn-close"><span class="fa fa-times"></span></div>
+        <div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
+        <div class="btn btn_min"><span class="fa fa-window-minimize"></span></div>
+    </div>
+    <ul class="topbar">
 	<a href="/me"><li><u>C</u>ontract</li></a>
 	<a href="/friends"><li><u>F</u>riends</li></a>
 <!-- 	<a href="/me"><li><u>C</u>ontract</li></a> -->
@@ -239,117 +482,135 @@
 <!-- 	<a href="http://soundcloud.com/" target="_blank"><li><u>S</u>oundcloud</li></a> -->
 </ul>
 
-        <div class="tag_list">
-            <ul id="tag-list">
-                <li><a href="/" ><img src="/assets/img/disk.png" />(C:)</a>
-                    <ul>
-                        
-                        
-                        <li><a href="/tag/whoami/" title="whoami"><img src="/assets/img/folder.ico" />whoami</a></li>
-                        
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="post_list">
-            
-            
-            <p>Please select a valid file to view :D(</p>
-
-            
-            
-        </div>
-        <div class="post_total">
-            
-            <div class="left">2 object(s)</div>
-            
-            <div class="right">&nbsp;</div>
-        </div>
-    </div>
-    
-    <!-- 第一个窗口 -->
-    <div class="content" id="window1">
-        <div class="post_title">
-            <img src="/assets/img/file.png" />
-            <h1>Nothing Here</h1>
-            <div class="btn btn-close"><span class="fa fa-times"></span></div> <!-- 关闭按钮 -->
-            <div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
-            <div class="btn btn_min"><span class="fa fa-window-minimize"></span></div>
-        </div>
-        <ul class="topbar">
-            <li></li>
+    <div class="tag_list">
+        <ul id="tag-list">
+            <li><a href="/" ><img src="/assets/img/disk.png" />(C:)</a>
+                <ul>
+                    
+                    
+                    <li><a href="/tag/whoami/" title="whoami"><img src="/assets/img/folder.ico" />whoami</a></li>
+                    
+                </ul>
+            </li>
         </ul>
-        <div class="post_content">
-            <p>Please select a valid file to view :D(</p>
+    </div>
+    <div class="post_list">
+        
+        
+        <p>Please select a valid file to view :D(</p>
 
-            
-            <br>
+        
+        
+    </div>
+    <div class="post_total">
+        
+        <div class="left">2 object(s)</div>
+        
+        <div class="right">&nbsp;</div>
+    </div>
+</div>
+
+
+<div class="content" id="window1">
+    <div class="post_title">
+        <img src="/assets/img/file.png" />
+        <h1>Nothing Here</h1>
+        <div class="btn btn-close"><span class="fa fa-times"></span></div>
+        <div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
+        <div class="btn btn_min"><span class="fa fa-window-minimize"></span></div>
+    </div>
+    <ul class="topbar">
+        <li></li>
+    </ul>
+    <div class="post_content">
+        <p>Please select a valid file to view :D(</p>
+
+        
+        <br>
 <hr>
 <br>
 <div class="donate">
-	<p>TIME IS ALL YOU NEED.<br>
+	<p>重新回到那个夏天<br>
 </div>
 
-            
-        </div>
+        
     </div>
+</div>
 
-    <!-- 第二个窗口 -->
-    <div class="content" id="window2">
-        <div class="post_title">
-            <img src="/assets/img/file.png" />
-            <h1>ERROR</h1>
-            <div class="btn btn-close"><span class="fa fa-times"></span></div> <!-- 关闭按钮 -->
-            <div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
-            <div class="btn btn_min"><span class="fa fa-window-minimize"></span></div>
-        </div>
-        <ul class="topbar">
-            <li></li>
-        </ul>
-        <div class="post_content">
-            <img src="/assets/img/windows2.png" alt="窗口2图片">
-        </div>
+<div class="content" id="window2">
+    <div class="post_title">
+        <img src="/assets/img/file.png" />
+        <h1>ERROR</h1>
+        <div class="btn btn-close"><span class="fa fa-times"></span></div>
+        <div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
+        <div class="btn btn_min"><span class="fa fa-window-minimize"></span></div>
     </div>
-
-    <!-- 第三个窗口 -->
-    <div class="content" id="window3">
-        <div class="post_title">
-            <img src="/assets/img/file.png" />
-            <h1>ERROR</h1>
-            <div class="btn btn-close"><span class="fa fa-times"></span></div> <!-- 关闭按钮 -->
-            <div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
-            <div class="btn btn_min"><span class="fa fa-window-minimize"></span></div>
-        </div>
-        <ul class="topbar">
-            <li></li>
-        </ul>
-        <div class="post_content">
-            <img src="/assets/img/windows1.png" alt="窗口3图片">
-        </div>
+    <ul class="topbar">
+        <li></li>
+    </ul>
+    <div class="post_content">
+        <img src="/assets/img/windows2.png" alt="窗口2图片">
     </div>
+</div>
 
-    <!-- 第四个窗口：模拟Windows蓝屏 -->
-    <div class="content" id="window4">
-        <div class="post_title">
-            <img src="/assets/img/file.png" />
-            <h1>Windows ERROR</h1>
-            <div class="btn btn-close"><span class="fa fa-times"></span></div> <!-- 关闭按钮 -->
-        </div>
-        <div class="post_content" style="background-color: #1E90FF; color: white; padding: 20px;">
-            <h2>:(</h2>
-            <p>Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</p>
-            <p>If you'd like to know more, you can search online later for this error: INACCESSIBLE_BOOT_DEVICE</p>
-            <pre>
+<div class="content" id="window3">
+    <div class="post_title">
+        <img src="/assets/img/file.png" />
+        <h1>ERROR</h1>
+        <div class="btn btn-close"><span class="fa fa-times"></span></div>
+        <div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
+        <div class="btn btn_min"><span class="fa fa-window-minimize"></span></div>
+    </div>
+    <ul class="topbar">
+        <li></li>
+    </ul>
+    <div class="post_content">
+        <img src="/assets/img/windows1.png" alt="窗口3图片">
+    </div>
+</div>
+
+<div class="content" id="window4">
+    <div class="post_title">
+        <img src="/assets/img/file.png" />
+        <h1>Windows ERROR</h1>
+        <div class="btn btn-close"><span class="fa fa-times"></span></div>
+    </div>
+    <div class="post_content" style="background-color: #1E90FF; color: white; padding: 20px;">
+        <h2>:(</h2>
+        <p>Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</p>
+        <p>If you'd like to know more, you can search online later for this error: INACCESSIBLE_BOOT_DEVICE</p>
+        <pre>
 *** STOP: 0x0000007B (0xFFFFF880009A9928, 0xFFFFFFFFC0000034, 0x0000000000000000, 0x0000000000000000)
-            </pre>
-            <p>Collecting data for crash dump ...</p>
-            <p>Initializing disk for crash dump ...</p>
-            <p>Beginning dump of physical memory.</p>
-            <p>Dumping physical memory to disk: 100</p>
-            <p>Physical memory dump complete.</p>
-            <p>Contact your system administrator or technical support group for further assistance.</p>
-        </div>
+        </pre>
+        <p>Collecting data for crash dump ...</p>
+        <p>Initializing disk for crash dump ...</p>
+        <p>Beginning dump of physical memory.</p>
+        <p>Dumping physical memory to disk: 100</p>
+        <p>Physical memory dump complete.</p>
+        <p>Contact your system administrator or technical support group for further assistance.</p>
     </div>
-    
+</div>
+
+
+<div class="taskbar">
+    <div class="start-btn">
+        <span>开始</span>
+    </div>
+    <div class="taskbar-items" id="taskbarItems"></div>
+    <div class="clock" id="clock">00:00:00</div>
+</div>
+
+<div id="startMenu" style="display: none;">
+    <div style="padding:4px 8px;background:#000080;color:white;font-weight:bold;">Windows 95</div>
+    <div class="menu-dropdown-item">程序</div>
+    <div class="menu-dropdown-item">文档</div>
+    <div class="menu-dropdown-item">设置</div>
+    <div class="menu-dropdown-item">查找</div>
+    <div class="menu-dropdown-item">帮助</div>
+    <div class="menu-dropdown-separator"></div>
+    <div class="menu-dropdown-item">运行(R)...</div>
+    <div class="menu-dropdown-separator"></div>
+    <div class="menu-dropdown-item">关闭系统(U)...</div>
+</div>
 </body>
 </html>
