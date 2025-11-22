@@ -1,0 +1,50 @@
+{
+	"page": {
+		"browseTitle": "Sion Tian's Webpage",
+		"windowTitle": "Sion Tian's home"
+	},
+	"groups": [
+		{
+			"id": "welcome",
+			"title": "Welcome",
+			"items": [
+				"Hello! Thanks for stopping by.",
+				"Browse the faux Windows 98 desktop to explore my projects.",
+				"Use the file explorer window to open files."
+			]
+		},
+		{
+			"id": "contact",
+			"title": "Contact",
+			"contacts": [
+				{
+					"type": "email",
+					"label": "Email",
+					"value": "example@example.com",
+					"href": "mailto:example@example.com"
+				},
+				{
+					"type": "phone",
+					"label": "Phone",
+					"value": "+1 (555) 123-4567",
+					"href": "tel:+15551234567"
+				},
+				{
+					"type": "link",
+					"label": "LinkedIn",
+					"value": "https://www.linkedin.com/in/example",
+					"href": "https://www.linkedin.com/in/example"
+				}
+			]
+		},
+		{
+			"id": "help",
+			"title": "Help",
+			"items": [
+				"Use the top-left menu to switch sections.",
+				"Double-click icons to open files in new windows.",
+				"Need assistance? Ping me via the Contact group."
+			]
+		}
+	]
+}
