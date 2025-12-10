@@ -76,3 +76,4 @@ Our research discovered numerous vulnerabilities.
 **Windows Bootloader**  
 **Microsoft Office OLE**  
 **Windows Remote Service**  
+**Windows Symbolic Link**

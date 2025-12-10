@@ -9,8 +9,9 @@
 			"title": "Welcome",
 			"items": [
 				"Hello! Thanks for stopping by.",
-				"Browse the faux Windows 98 desktop to explore my projects.",
-				"Use the file explorer window to open files."
+				"I'm Yunpeng TIAN.",
+				"I'm a security researcher.",
+				"You can <a href=\"#\" style=\"color:blue;text-decoration:underline;\" onclick=\"window.openHtmlWindow('assets/c_drive/typ/cv.html'); return false;\">click here to view my CV</a>."
 			]
 		},
 		{

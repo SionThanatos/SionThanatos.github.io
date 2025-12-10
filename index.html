@@ -1,765 +1,817 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Sion Tian's Webpage</title>
-    <link rel="icon" href="favico.ico" type="image/png" />
-    <link rel="stylesheet" href="./style.css" />
-    <style>
-      html,body{height:100%;margin:0;}
-      body{background:#0f8f8f;padding:18px;font-family:Arial;box-sizing:border-box;overflow-x:hidden;overflow-y:auto;}
-      .page{max-width:980px;margin:0 auto}
-      .resize-handle{position:absolute;background:transparent;pointer-events:auto;z-index:5}
-      .resize-handle-e{top:0;right:-3px;width:8px;height:100%;cursor:e-resize}
-      .resize-handle-s{left:0;bottom:-3px;width:100%;height:8px;cursor:s-resize}
-      .resize-handle-se{right:-4px;bottom:-4px;width:16px;height:16px;cursor:se-resize}
-    </style>
-  </head>
-  <body>
-    <div class="page">
 
-      <!-- Window main -->
-      <div class="window" id="window-main" style="width:600px;position:absolute;top:33%;left:33%;transform:translate(-33%,-33%);display:flex;flex-direction:column;">
-        <!-- 窗口 title-bar -->
-        <div class="title-bar">
-          <div style="display:flex;align-items:center;gap: 4px;">
-            <div class="title-bar-controls">
-              <img src="./assets/img/mycomputer.png" alt="icon">
-            </div>
-            <div class="title-bar-text">Sion Tian's home</div>
-          </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sion Tian's Webpage</title>
+  <link rel="icon" href="favico.ico" type="image/png" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background: #0f8f8f;
+      padding: 18px;
+      font-family: Arial;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto
+    }
+
+    .resize-handle {
+      position: absolute;
+      background: transparent;
+      pointer-events: auto;
+      z-index: 5
+    }
+
+    .resize-handle-e {
+      top: 0;
+      right: -3px;
+      width: 8px;
+      height: 100%;
+      cursor: e-resize
+    }
+
+    .resize-handle-s {
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 8px;
+      cursor: s-resize
+    }
+
+    .resize-handle-se {
+      right: -4px;
+      bottom: -4px;
+      width: 16px;
+      height: 16px;
+      cursor: se-resize
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- Window main -->
+    <div class="window" id="window-main"
+      style="width:600px;position:absolute;top:33%;left:33%;transform:translate(-33%,-33%);display:flex;flex-direction:column;">
+      <!-- 窗口 title-bar -->
+      <div class="title-bar">
+        <div style="display:flex;align-items:center;gap: 4px;">
           <div class="title-bar-controls">
-            <button aria-label="Minimize"></button>
-            <button aria-label="Maximize" disabled></button>
-            <button aria-label="Close"></button>
+            <img src="./assets/img/mycomputer.png" alt="icon">
           </div>
+          <div class="title-bar-text">Sion Tian's home</div>
         </div>
-        <!-- 顶部 topbar -->
-        <ul class="topbar" style="display:flex;gap:8px;padding:0;list-style:none;margin:2px 8px;">
-          <li><a href="#" data-topic="contact" style="cursor:pointer;text-decoration:none;"><u>C</u>ontact</a></li>
-          <li><a href="#" data-topic="help" style="cursor:pointer;text-decoration:none;"><u>H</u>elp</a></li>
-        </ul>
-
-        <!-- 中间 window-body -->
-        <div class="window-body" style="display: flex; gap: 2px;margin:2px 8px; flex:1; min-height:0;">
-          <div style="flex: 0 0 200px; margin: 0; padding: 0px; background: transparent; display:flex; flex-direction:column; min-height:0;">
-            <!-- 左侧 -->
-            <ul class="tree-view" style="padding-left:12px; padding-right:6px; margin:0; flex:1; overflow-y:scroll;">
-              <li>
-                <div style="display:flex ; align-items:center; gap:6px">
-                  <img src="./assets/img/disk.png" alt="C:\"> 
-                  <span style="cursor: default;">(C:)</span>
-                </div>
-
-                <ul id="folder-items" style="margin:6px 0 0 6px">
-                  <li style="color:#666;">Loading folders...</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div style="flex: 1; overflow-y: scroll; margin: 0; padding: 8px; background: #fff; border:1px solid #ccc; min-height:120px; flex-direction:column; gap:6px;">
-            <!-- 右侧 -->
-            <h3 id="window-main-title" style="margin:0 0 6px 0;font-size:14px;">Welcome</h3>
-            <div id="folder-files" style="display:flex;flex-wrap:wrap;gap:6px;font-size:12px;line-height:1.4;">
-              <p style="color:#666;margin:0;">Select a folder from the left to view files.</p>
-            </div>
-          </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize" disabled></button>
+          <button aria-label="Close"></button>
         </div>
-        <!-- 底部 status-bar -->
-        <div class="status-bar" style="padding:0 8px">
-          <p class="status-bar-field" id="window7-status-count" style="flex:0 0 120px;width:120px;min-width:120px">0 file(s)</p>
-          <p class="status-bar-field"></p>
-        </div>
-
       </div>
-   
+      <!-- 顶部 topbar -->
+      <ul class="topbar" style="display:flex;gap:8px;padding:0;list-style:none;margin:2px 8px;">
+        <li><a href="#" data-topic="contact" style="cursor:pointer;text-decoration:none;"><u>C</u>ontact</a></li>
+        <li><a href="#" data-topic="help" style="cursor:pointer;text-decoration:none;"><u>H</u>elp</a></li>
+      </ul>
+
+      <!-- 中间 window-body -->
+      <div class="window-body" style="display: flex; gap: 2px;margin:2px 8px; flex:1; min-height:0;">
+        <div
+          style="flex: 0 0 200px; margin: 0; padding: 0px; background: transparent; display:flex; flex-direction:column; min-height:0;">
+          <!-- 左侧 -->
+          <ul class="tree-view" style="padding-left:12px; padding-right:6px; margin:0; flex:1; overflow-y:scroll;">
+            <li>
+              <div style="display:flex ; align-items:center; gap:6px">
+                <img src="./assets/img/disk.png" alt="C:\">
+                <span style="cursor: default;">(C:)</span>
+              </div>
+
+              <ul id="folder-items" style="margin:6px 0 0 6px">
+                <li style="color:#666;">Loading folders...</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div
+          style="flex: 1; overflow-y: scroll; margin: 0; padding: 8px; background: #fff; border:1px solid #ccc; min-height:120px; flex-direction:column; gap:6px;">
+          <!-- 右侧 -->
+          <h3 id="window-main-title" style="margin:0 0 6px 0;font-size:14px;">Welcome</h3>
+          <div id="folder-files" style="display:flex;flex-wrap:wrap;gap:6px;font-size:12px;line-height:1.4;">
+            <p style="color:#666;margin:0;">Select a folder from the left to view files.</p>
+          </div>
+        </div>
+      </div>
+      <!-- 底部 status-bar -->
+      <div class="status-bar" style="padding:0 8px">
+        <p class="status-bar-field" id="window7-status-count" style="flex:0 0 120px;width:120px;min-width:120px">0
+          file(s)</p>
+        <p class="status-bar-field"></p>
+      </div>
+
     </div>
-    <script>
-      (function () {
-        const folderItemsContainer = document.getElementById("folder-items");
-        const fileGrid = document.getElementById("folder-files");
-        const statusCount = document.getElementById("window7-status-count");
-        const mainTitle = document.getElementById("window-main-title");
-        const topbarLinks = document.querySelectorAll("#window-main .topbar a[data-topic]");
-        const desktopLayer = document.body;
-        const mainWindow = document.getElementById("window-main");
-        const mainTitleBar = mainWindow ? mainWindow.querySelector(".title-bar") : null;
-        const mainWindowTitleText = mainWindow ? mainWindow.querySelector(".title-bar-text") : null;
-        const mainMaximizeButton = mainWindow ? mainWindow.querySelector('.title-bar-controls button[aria-label="Maximize"]') : null;
 
-        const DEFAULT_WINDOW_WIDTH = 480;
-        const DEFAULT_WINDOW_HEIGHT = 400;
-        const HTML_WINDOW_PRESETS = {
-          "assets/c_drive/typ/cv.html": { width: 800, height: 600 }
-        };
+  </div>
+  <script>
+    (function () {
+      const folderItemsContainer = document.getElementById("folder-items");
+      const fileGrid = document.getElementById("folder-files");
+      const statusCount = document.getElementById("window7-status-count");
+      const mainTitle = document.getElementById("window-main-title");
+      const topbarLinks = document.querySelectorAll("#window-main .topbar a[data-topic]");
+      const desktopLayer = document.body;
+      const mainWindow = document.getElementById("window-main");
+      const mainTitleBar = mainWindow ? mainWindow.querySelector(".title-bar") : null;
+      const mainWindowTitleText = mainWindow ? mainWindow.querySelector(".title-bar-text") : null;
+      const mainMaximizeButton = mainWindow ? mainWindow.querySelector('.title-bar-controls button[aria-label="Maximize"]') : null;
 
-        if (mainWindow && mainTitleBar) {
-          enableWindowDrag(mainWindow, mainTitleBar);
-          if (mainMaximizeButton) {
-            mainMaximizeButton.disabled = true;
-            mainMaximizeButton.setAttribute("aria-disabled", "true");
-            mainMaximizeButton.title = "Maximize disabled";
-          }
-          enableWindowResize(mainWindow, { minWidth: 360, minHeight: 220 });
+      const DEFAULT_WINDOW_WIDTH = 480;
+      const DEFAULT_WINDOW_HEIGHT = 400;
+      const HTML_WINDOW_PRESETS = {
+        "assets/c_drive/typ/cv.html": { width: 800, height: 600, title: "whoami" }
+      };
+
+      if (mainWindow && mainTitleBar) {
+        enableWindowDrag(mainWindow, mainTitleBar);
+        if (mainMaximizeButton) {
+          mainMaximizeButton.disabled = true;
+          mainMaximizeButton.setAttribute("aria-disabled", "true");
+          mainMaximizeButton.title = "Maximize disabled";
         }
+        enableWindowResize(mainWindow, { minWidth: 360, minHeight: 220 });
+      }
 
-        if (!folderItemsContainer || !fileGrid || !statusCount) {
+      if (!folderItemsContainer || !fileGrid || !statusCount) {
+        return;
+      }
+
+      const defaultFlexWrap = fileGrid.style.flexWrap || "";
+      const defaultFlexDirection = fileGrid.style.flexDirection || "";
+      let hasSelectedFolder = false;
+      let defaultFolderLines = ["Select a folder from the left to view files."];
+      let defaultContentTitle = "Welcome";
+      let detailGroupsById = null;
+      let floatingWindowCount = 0;
+
+      function setStatus(text) {
+        statusCount.textContent = text;
+      }
+
+      function setMainTitle(text) {
+        if (!mainTitle) {
+          return;
+        }
+        if (text === null) {
+          mainTitle.style.display = "none";
+          mainTitle.textContent = "";
+          return;
+        }
+        mainTitle.style.display = "";
+        mainTitle.textContent = text;
+      }
+
+      function setGridMode(mode) {
+        if (mode === "text") {
+          fileGrid.style.flexWrap = "nowrap";
+          fileGrid.style.flexDirection = "column";
+        } else {
+          fileGrid.style.flexWrap = defaultFlexWrap;
+          fileGrid.style.flexDirection = defaultFlexDirection;
+        }
+      }
+
+      function renderTextLines(lines, statusLabel, titleText) {
+        setGridMode("text");
+        fileGrid.innerHTML = "";
+        setMainTitle(titleText || statusLabel || "Info");
+        if (!lines || !lines.length) {
+          const p = document.createElement("p");
+          p.style.color = "#666";
+          p.style.margin = "0";
+          p.textContent = "Select a folder from the left to view files.";
+          fileGrid.appendChild(p);
+          setStatus("0 file(s)");
+          return;
+        }
+        lines.forEach(function (text) {
+          const p = document.createElement("p");
+          p.style.margin = "0 0 4px 0";
+          p.innerHTML = text;
+          fileGrid.appendChild(p);
+        });
+        setStatus(statusLabel || "Welcome");
+      }
+
+      function renderContactList(contacts, statusLabel, titleText) {
+        setGridMode("text");
+        fileGrid.innerHTML = "";
+        setMainTitle(titleText || statusLabel || "Contact");
+        if (!contacts || !contacts.length) {
+          renderTextLines(["No contact information available."], statusLabel || "Contact", titleText || statusLabel || "Contact");
           return;
         }
 
-        const defaultFlexWrap = fileGrid.style.flexWrap || "";
-        const defaultFlexDirection = fileGrid.style.flexDirection || "";
-        let hasSelectedFolder = false;
-        let defaultFolderLines = ["Select a folder from the left to view files."];
-        let defaultContentTitle = "Welcome";
-        let detailGroupsById = null;
-        let floatingWindowCount = 0;
+        contacts.forEach(function (contact) {
+          const row = document.createElement("p");
+          row.style.margin = "0 0 4px 0";
 
-        function setStatus(text) {
-          statusCount.textContent = text;
-        }
+          const label = document.createElement("span");
+          label.style.fontWeight = "bold";
+          label.style.display = "inline-block";
+          label.style.minWidth = "80px";
+          label.textContent = (contact.label || contact.type || "") + ":";
+          row.appendChild(label);
+          row.appendChild(document.createTextNode(" "));
 
-        function setMainTitle(text) {
-          if (!mainTitle) {
-            return;
-          }
-          if (text === null) {
-            mainTitle.style.display = "none";
-            mainTitle.textContent = "";
-            return;
-          }
-          mainTitle.style.display = "";
-          mainTitle.textContent = text;
-        }
-
-        function setGridMode(mode) {
-          if (mode === "text") {
-            fileGrid.style.flexWrap = "nowrap";
-            fileGrid.style.flexDirection = "column";
+          if (contact.href) {
+            const link = document.createElement("a");
+            link.href = contact.href;
+            link.textContent = contact.value || contact.href;
+            link.target = contact.type === "link" ? "_blank" : "_self";
+            link.rel = contact.type === "link" ? "noopener" : "";
+            row.appendChild(link);
           } else {
-            fileGrid.style.flexWrap = defaultFlexWrap;
-            fileGrid.style.flexDirection = defaultFlexDirection;
-          }
-        }
-
-        function renderTextLines(lines, statusLabel, titleText) {
-          setGridMode("text");
-          fileGrid.innerHTML = "";
-          setMainTitle(titleText || statusLabel || "Info");
-          if (!lines || !lines.length) {
-            const p = document.createElement("p");
-            p.style.color = "#666";
-            p.style.margin = "0";
-            p.textContent = "Select a folder from the left to view files.";
-            fileGrid.appendChild(p);
-            setStatus("0 file(s)");
-            return;
-          }
-          lines.forEach(function (text) {
-            const p = document.createElement("p");
-            p.style.margin = "0 0 4px 0";
-            p.textContent = text;
-            fileGrid.appendChild(p);
-          });
-          setStatus(statusLabel || "Welcome");
-        }
-
-        function renderContactList(contacts, statusLabel, titleText) {
-          setGridMode("text");
-          fileGrid.innerHTML = "";
-          setMainTitle(titleText || statusLabel || "Contact");
-          if (!contacts || !contacts.length) {
-            renderTextLines(["No contact information available."], statusLabel || "Contact", titleText || statusLabel || "Contact");
-            return;
+            const span = document.createElement("span");
+            span.textContent = contact.value || "";
+            row.appendChild(span);
           }
 
-          contacts.forEach(function (contact) {
-            const row = document.createElement("p");
-            row.style.margin = "0 0 4px 0";
-
-            const label = document.createElement("span");
-            label.style.fontWeight = "bold";
-            label.style.display = "inline-block";
-            label.style.minWidth = "80px";
-            label.textContent = (contact.label || contact.type || "") + ":";
-            row.appendChild(label);
-            row.appendChild(document.createTextNode(" "));
-
-            if (contact.href) {
-              const link = document.createElement("a");
-              link.href = contact.href;
-              link.textContent = contact.value || contact.href;
-              link.target = contact.type === "link" ? "_blank" : "_self";
-              link.rel = contact.type === "link" ? "noopener" : "";
-              row.appendChild(link);
-            } else {
-              const span = document.createElement("span");
-              span.textContent = contact.value || "";
-              row.appendChild(span);
-            }
-
-            fileGrid.appendChild(row);
-          });
-
-          setStatus(statusLabel || "Contact");
-        }
-
-        function enableWindowResize(windowEl, options) {
-          if (!windowEl || windowEl.dataset.resizable === "true") {
-            return;
-          }
-          windowEl.dataset.resizable = "true";
-          const config = options || {};
-          const minWidth = typeof config.minWidth === "number" ? config.minWidth : 260;
-          const minHeight = typeof config.minHeight === "number" ? config.minHeight : 160;
-
-          const handleDefs = [
-            { direction: "e", className: "resize-handle resize-handle-e", resizeWidth: true, resizeHeight: false },
-            { direction: "s", className: "resize-handle resize-handle-s", resizeWidth: false, resizeHeight: true },
-            { direction: "se", className: "resize-handle resize-handle-se", resizeWidth: true, resizeHeight: true },
-          ];
-
-          let activeHandle = null;
-          let startX = 0;
-          let startY = 0;
-          let startWidth = 0;
-          let startHeight = 0;
-
-          function onMouseMove(event) {
-            if (!activeHandle) {
-              return;
-            }
-            if (activeHandle.resizeWidth) {
-              const deltaX = event.clientX - startX;
-              const newWidth = Math.max(minWidth, startWidth + deltaX);
-              windowEl.style.width = newWidth + "px";
-            }
-            if (activeHandle.resizeHeight) {
-              const deltaY = event.clientY - startY;
-              const newHeight = Math.max(minHeight, startHeight + deltaY);
-              windowEl.style.height = newHeight + "px";
-            }
-          }
-
-          function stopResize() {
-            if (!activeHandle) {
-              return;
-            }
-            activeHandle = null;
-            document.removeEventListener("mousemove", onMouseMove);
-            document.removeEventListener("mouseup", stopResize);
-            document.body.style.userSelect = "";
-          }
-
-          function startResize(handle, event) {
-            if (event.button !== 0) {
-              return;
-            }
-            if (windowEl.dataset && windowEl.dataset.maximized === "true") {
-              return;
-            }
-            activeHandle = handle;
-            startX = event.clientX;
-            startY = event.clientY;
-            startWidth = windowEl.offsetWidth;
-            startHeight = windowEl.offsetHeight;
-            document.body.style.userSelect = "none";
-            document.addEventListener("mousemove", onMouseMove);
-            document.addEventListener("mouseup", stopResize);
-            event.preventDefault();
-          }
-
-          handleDefs.forEach(function (def) {
-            const handleEl = document.createElement("div");
-            handleEl.className = def.className;
-            handleEl.dataset.resizeDirection = def.direction;
-            handleEl.addEventListener("mousedown", function (event) {
-              startResize(def, event);
-            });
-            windowEl.appendChild(handleEl);
-          });
-        }
-
-        function normalizePath(value) {
-          return (value || "")
-            .replace(/^[.\\/]+/, "")
-            .replace(/\\/g, "/")
-            .toLowerCase();
-        }
-
-        function getRandomDesktopPosition(width, height) {
-          const margin = 40;
-          const maxLeft = Math.max(margin, window.innerWidth - width - margin);
-          const maxTop = Math.max(margin, window.innerHeight - height - margin);
-          const left = Math.floor(Math.random() * (maxLeft - margin + 1)) + margin / 2;
-          const top = Math.floor(Math.random() * (maxTop - margin + 1)) + margin / 2;
-          return { top: Math.max(margin / 2, top), left: Math.max(margin / 2, left) };
-        }
-
-        function createFloatingWindow(options) {
-          const config = options || {};
-          const width = typeof config.width === "number" ? config.width : DEFAULT_WINDOW_WIDTH;
-          const height = typeof config.height === "number" ? config.height : DEFAULT_WINDOW_HEIGHT;
-          const position = getRandomDesktopPosition(width, height);
-          const windowEl = document.createElement("div");
-          windowEl.className = "window floating-window";
-          windowEl.style.position = "absolute";
-          windowEl.style.width = width + "px";
-          windowEl.style.height = height + "px";
-          windowEl.style.display = "flex";
-          windowEl.style.flexDirection = "column";
-          windowEl.style.left = position.left + "px";
-          windowEl.style.top = position.top + "px";
-          windowEl.style.zIndex = 200 + floatingWindowCount;
-
-          const titleBar = document.createElement("div");
-          titleBar.className = "title-bar";
-          const titleWrap = document.createElement("div");
-          titleWrap.style.display = "flex";
-          titleWrap.style.alignItems = "center";
-          titleWrap.style.gap = "4px";
-
-          const iconWrap = document.createElement("div");
-          iconWrap.className = "title-bar-controls";
-          iconWrap.innerHTML = '<img src="' + (config.icon || "./assets/img/file.png") + '" alt="icon">';
-
-          const titleText = document.createElement("div");
-          titleText.className = "title-bar-text";
-          titleText.textContent = config.title || "Window";
-
-          titleWrap.appendChild(iconWrap);
-          titleWrap.appendChild(titleText);
-
-          const controls = document.createElement("div");
-          controls.className = "title-bar-controls";
-          ["Minimize", "Maximize", "Close"].forEach(function (label) {
-            const btn = document.createElement("button");
-            btn.setAttribute("aria-label", label);
-            if (label === "Close") {
-              btn.addEventListener("click", function () {
-                windowEl.remove();
-              });
-            }
-            controls.appendChild(btn);
-          });
-
-          titleBar.appendChild(titleWrap);
-          titleBar.appendChild(controls);
-
-          const body = document.createElement("div");
-          body.className = "window-body";
-          body.style.flex = "1";
-          body.style.minHeight = "0";
-          body.style.overflow = "auto";
-          body.innerHTML = config.content || "";
-
-          windowEl.appendChild(titleBar);
-          windowEl.appendChild(body);
-          desktopLayer.appendChild(windowEl);
-          const floatingMaximizeButton = controls.querySelector('button[aria-label="Maximize"]');
-          if (floatingMaximizeButton) {
-            enableWindowMaximize(windowEl, floatingMaximizeButton);
-          }
-          if (typeof enableWindowDrag === "function") {
-            enableWindowDrag(windowEl, titleBar);
-          }
-          if (typeof enableWindowResize === "function") {
-            enableWindowResize(windowEl, { minWidth: 260, minHeight: 180 });
-          }
-          floatingWindowCount += 1;
-          return windowEl;
-        }
-
-        function openHtmlWindow(path, options) {
-          if (!path) {
-            return;
-          }
-
-          const normalizedPath = normalizePath(path);
-          const meta = Object.assign({}, HTML_WINDOW_PRESETS[normalizedPath] || {}, options);
-          const fallbackTitle = (function () {
-            const segments = path.split(/[/\\]/);
-            const last = segments[segments.length - 1] || "Document";
-            return last;
-          })();
-
-          fetch(path)
-            .then(function (res) {
-              if (!res.ok) {
-                throw new Error("Failed to load content.");
-              }
-              return res.text();
-            })
-            .then(function (html) {
-              let content = html;
-              try {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, "text/html");
-                if (doc && doc.body) {
-                  const inlineStyles = Array.from(doc.querySelectorAll("style, link[rel='stylesheet']"))
-                    .map(function (el) {
-                      if (el.tagName.toLowerCase() === "style") {
-                        return "<style>" + el.innerHTML + "</style>";
-                      }
-                      const href = el.getAttribute("href");
-                      return href ? '<link rel="stylesheet" href="' + href + '">' : "";
-                    })
-                    .join("");
-                  content = inlineStyles + doc.body.innerHTML;
-                }
-              } catch (error) {
-                content = html;
-              }
-              createFloatingWindow({
-                title: meta.title || fallbackTitle,
-                icon: meta.icon || "./assets/img/file.png",
-                content: content,
-                width: meta.width || 360,
-                height: meta.height || 220,
-              });
-            })
-            .catch(function (error) {
-              createFloatingWindow({
-                title: meta.title || fallbackTitle,
-                icon: meta.icon || "./assets/img/file.png",
-                content:
-                  '<p style="margin:0;color:#c00;">' +
-                  (error && error.message ? error.message : "Unable to open content.") +
-                  "</p>",
-                width: 260,
-                height: 140,
-              });
-            });
-        }
-
-        function enableWindowDrag(windowEl, handleEl) {
-          let isDragging = false;
-          let offsetX = 0;
-          let offsetY = 0;
-          let previousUserSelect = "";
-
-          function onMouseMove(event) {
-            if (!isDragging) {
-              return;
-            }
-
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
-            const windowWidth = windowEl.offsetWidth;
-            const windowHeight = windowEl.offsetHeight;
-
-            let newLeft = event.clientX - offsetX;
-            let newTop = event.clientY - offsetY;
-
-            const edgeAllowance = 900;
-            const baseMinLeft = Math.min(0, viewportWidth - windowWidth);
-            const baseMaxLeft = Math.max(0, viewportWidth - windowWidth);
-            const baseMinTop = Math.min(0, viewportHeight - windowHeight);
-            const baseMaxTop = Math.max(0, viewportHeight - windowHeight);
-            const minLeft = baseMinLeft - edgeAllowance;
-            const maxLeft = baseMaxLeft + edgeAllowance;
-            const minTop = baseMinTop - edgeAllowance;
-            const maxTop = baseMaxTop + edgeAllowance;
-
-            if (newLeft < minLeft) {
-              newLeft = minLeft;
-            }
-            if (newLeft > maxLeft) {
-              newLeft = maxLeft;
-            }
-            if (newTop < minTop) {
-              newTop = minTop;
-            }
-            if (newTop > maxTop) {
-              newTop = maxTop;
-            }
-
-            windowEl.style.left = newLeft + "px";
-            windowEl.style.top = newTop + "px";
-            windowEl.style.right = "auto";
-            windowEl.style.bottom = "auto";
-          }
-
-          function stopDragging() {
-            if (!isDragging) {
-              return;
-            }
-            isDragging = false;
-            document.removeEventListener("mousemove", onMouseMove);
-            document.removeEventListener("mouseup", stopDragging);
-            document.body.style.userSelect = previousUserSelect;
-          }
-
-          handleEl.addEventListener("mousedown", function (event) {
-            if (event.button !== 0) {
-              return;
-            }
-            if (event.target.closest(".title-bar-controls")) {
-              return;
-            }
-            if (windowEl.dataset && windowEl.dataset.maximized === "true") {
-              return;
-            }
-
-            isDragging = true;
-            previousUserSelect = document.body.style.userSelect;
-            document.body.style.userSelect = "none";
-
-            const rect = windowEl.getBoundingClientRect();
-            offsetX = event.clientX - rect.left;
-            offsetY = event.clientY - rect.top;
-
-            windowEl.style.left = rect.left + "px";
-            windowEl.style.top = rect.top + "px";
-            windowEl.style.transform = "none";
-            windowEl.style.right = "auto";
-            windowEl.style.bottom = "auto";
-
-            document.addEventListener("mousemove", onMouseMove);
-            document.addEventListener("mouseup", stopDragging);
-            event.preventDefault();
-          });
-        }
-
-        function enableWindowMaximize(windowEl, buttonEl) {
-          if (!windowEl || !buttonEl) {
-            return;
-          }
-          windowEl.dataset.maximized = windowEl.dataset.maximized || "false";
-          let restoreStyles = null;
-
-          function maximizeWindow() {
-            restoreStyles = {
-              left: windowEl.style.left,
-              top: windowEl.style.top,
-              right: windowEl.style.right,
-              bottom: windowEl.style.bottom,
-              width: windowEl.style.width,
-              height: windowEl.style.height,
-              transform: windowEl.style.transform,
-              position: windowEl.style.position,
-            };
-            windowEl.style.position = "fixed";
-            windowEl.style.left = "0px";
-            windowEl.style.top = "0px";
-            windowEl.style.right = "0px";
-            windowEl.style.bottom = "0px";
-            windowEl.style.width = "auto";
-            windowEl.style.height = "auto";
-            windowEl.style.transform = "none";
-            windowEl.dataset.maximized = "true";
-            buttonEl.setAttribute("aria-label", "Restore");
-          }
-
-          function restoreWindow() {
-            if (restoreStyles) {
-              windowEl.style.left = restoreStyles.left;
-              windowEl.style.top = restoreStyles.top;
-              windowEl.style.right = restoreStyles.right;
-              windowEl.style.bottom = restoreStyles.bottom;
-              windowEl.style.width = restoreStyles.width;
-              windowEl.style.height = restoreStyles.height;
-              windowEl.style.transform = restoreStyles.transform;
-              windowEl.style.position = restoreStyles.position || "absolute";
-            }
-            windowEl.dataset.maximized = "false";
-            buttonEl.setAttribute("aria-label", "Maximize");
-            restoreStyles = null;
-          }
-
-          buttonEl.addEventListener("click", function (event) {
-            event.preventDefault();
-            if (windowEl.dataset.maximized === "true") {
-              restoreWindow();
-            } else {
-              maximizeWindow();
-            }
-          });
-        }
-
-        function applyPageMeta(meta) {
-          if (!meta) {
-            return;
-          }
-          if (meta.browseTitle) {
-            document.title = meta.browseTitle;
-          }
-          if (meta.windowTitle && mainWindowTitleText) {
-            mainWindowTitleText.textContent = meta.windowTitle;
-          }
-        }
-
-        function showDefaultText() {
-          if (!hasSelectedFolder) {
-            const statusLabel = defaultFolderLines && defaultFolderLines.length ? defaultContentTitle : "0 file(s)";
-            renderTextLines(defaultFolderLines, statusLabel, defaultContentTitle);
-          }
-        }
-
-        window.setMainDefaultContent = function (lines, title) {
-          if (Array.isArray(lines) && lines.length) {
-            defaultFolderLines = lines;
-          }
-          if (title) {
-            defaultContentTitle = title;
-          }
-          showDefaultText();
-        };
-
-        function renderTopic(topicId) {
-          if (!topicId) {
-            return;
-          }
-          if (!detailGroupsById) {
-            renderTextLines(["Content is still loading."], "Loading", "Loading");
-            return;
-          }
-          const group = detailGroupsById[topicId];
-          if (!group) {
-            renderTextLines(["Nothing to show for this section."], "Info", "Info");
-            return;
-          }
-
-          hasSelectedFolder = false;
-          if (Array.isArray(group.contacts)) {
-            renderContactList(group.contacts, group.title || "Contact", group.title || "Contact");
-            return;
-          }
-          renderTextLines(group.items || [], group.title || "Info", group.title || "Info");
-        }
-
-        topbarLinks.forEach(function (link) {
-          link.addEventListener("click", function (event) {
-            event.preventDefault();
-            const topic = link.getAttribute("data-topic");
-            renderTopic(topic);
-          });
+          fileGrid.appendChild(row);
         });
 
-        function renderFiles(folder) {
-          setMainTitle(null);
-          setGridMode("grid");
-          fileGrid.innerHTML = "";
-          if (!folder.files || folder.files.length === 0) {
-            fileGrid.innerHTML = '<p style="color:#666;margin:0;">This folder is empty.</p>';
-            setStatus("0 file(s)");
-            hasSelectedFolder = true;
+        setStatus(statusLabel || "Contact");
+      }
+
+      function enableWindowResize(windowEl, options) {
+        if (!windowEl || windowEl.dataset.resizable === "true") {
+          return;
+        }
+        windowEl.dataset.resizable = "true";
+        const config = options || {};
+        const minWidth = typeof config.minWidth === "number" ? config.minWidth : 260;
+        const minHeight = typeof config.minHeight === "number" ? config.minHeight : 160;
+
+        const handleDefs = [
+          { direction: "e", className: "resize-handle resize-handle-e", resizeWidth: true, resizeHeight: false },
+          { direction: "s", className: "resize-handle resize-handle-s", resizeWidth: false, resizeHeight: true },
+          { direction: "se", className: "resize-handle resize-handle-se", resizeWidth: true, resizeHeight: true },
+        ];
+
+        let activeHandle = null;
+        let startX = 0;
+        let startY = 0;
+        let startWidth = 0;
+        let startHeight = 0;
+
+        function onMouseMove(event) {
+          if (!activeHandle) {
             return;
           }
+          if (activeHandle.resizeWidth) {
+            const deltaX = event.clientX - startX;
+            const newWidth = Math.max(minWidth, startWidth + deltaX);
+            windowEl.style.width = newWidth + "px";
+          }
+          if (activeHandle.resizeHeight) {
+            const deltaY = event.clientY - startY;
+            const newHeight = Math.max(minHeight, startHeight + deltaY);
+            windowEl.style.height = newHeight + "px";
+          }
+        }
 
-          folder.files.forEach(function (file) {
-            const tile = document.createElement("a");
-            tile.style.cssText = "display:flex;flex-direction:column;align-items:center;width:60px;text-decoration:none;color:inherit;margin-bottom:6px;";
-            tile.innerHTML = '<img src="./assets/img/file.ico" alt="file" style="width:24px;height:24px;">' +
-              "<span>" + file.name + "</span>";
+        function stopResize() {
+          if (!activeHandle) {
+            return;
+          }
+          activeHandle = null;
+          document.removeEventListener("mousemove", onMouseMove);
+          document.removeEventListener("mouseup", stopResize);
+          document.body.style.userSelect = "";
+        }
 
-            const isHtmlFile = file.path && /\.html?$/i.test(file.path);
-            if (isHtmlFile) {
-              tile.href = "#";
-              tile.addEventListener("click", function (event) {
-                event.preventDefault();
-                openHtmlWindow(file.path, {
-                  title: file.name || null,
-                });
-              });
-            } else if (file.path) {
-              tile.href = file.path;
-              tile.target = "_blank";
-              tile.rel = "noopener";
-            } else {
-              tile.href = "#";
-            }
-            fileGrid.appendChild(tile);
+        function startResize(handle, event) {
+          if (event.button !== 0) {
+            return;
+          }
+          if (windowEl.dataset && windowEl.dataset.maximized === "true") {
+            return;
+          }
+          activeHandle = handle;
+          startX = event.clientX;
+          startY = event.clientY;
+          startWidth = windowEl.offsetWidth;
+          startHeight = windowEl.offsetHeight;
+          document.body.style.userSelect = "none";
+          document.addEventListener("mousemove", onMouseMove);
+          document.addEventListener("mouseup", stopResize);
+          event.preventDefault();
+        }
+
+        handleDefs.forEach(function (def) {
+          const handleEl = document.createElement("div");
+          handleEl.className = def.className;
+          handleEl.dataset.resizeDirection = def.direction;
+          handleEl.addEventListener("mousedown", function (event) {
+            startResize(def, event);
           });
+          windowEl.appendChild(handleEl);
+        });
+      }
 
-          setStatus(folder.files.length + " file(s)");
-          hasSelectedFolder = true;
-        }
+      function normalizePath(value) {
+        return (value || "")
+          .replace(/^[.\\/]+/, "")
+          .replace(/\\/g, "/")
+          .toLowerCase();
+      }
 
-        function selectFolder(folder) {
-          hasSelectedFolder = true;
-          renderFiles(folder);
-        }
+      function getRandomDesktopPosition(width, height) {
+        const margin = 40;
+        const maxLeft = Math.max(margin, window.innerWidth - width - margin);
+        const maxTop = Math.max(margin, window.innerHeight - height - margin);
+        const left = Math.floor(Math.random() * (maxLeft - margin + 1)) + margin / 2;
+        const top = Math.floor(Math.random() * (maxTop - margin + 1)) + margin / 2;
+        return { top: Math.max(margin / 2, top), left: Math.max(margin / 2, left) };
+      }
 
-        function renderFolders(folders) {
-          folderItemsContainer.innerHTML = "";
-          if (!folders.length) {
-            folderItemsContainer.innerHTML = '<li style="color:#666;">No folders found.</li>';
-            renderTextLines([], "0 file(s)", "Folders");
-            return;
-          }
+      function createFloatingWindow(options) {
+        const config = options || {};
+        const width = typeof config.width === "number" ? config.width : DEFAULT_WINDOW_WIDTH;
+        const height = typeof config.height === "number" ? config.height : DEFAULT_WINDOW_HEIGHT;
+        const position = getRandomDesktopPosition(width, height);
+        const windowEl = document.createElement("div");
+        windowEl.className = "window floating-window";
+        windowEl.style.position = "absolute";
+        windowEl.style.width = width + "px";
+        windowEl.style.height = height + "px";
+        windowEl.style.display = "flex";
+        windowEl.style.flexDirection = "column";
+        windowEl.style.left = position.left + "px";
+        windowEl.style.top = position.top + "px";
+        windowEl.style.zIndex = 200 + floatingWindowCount;
 
-          folders.forEach(function (folder) {
-            const li = document.createElement("li");
-            const link = document.createElement("a");
-            link.href = folder.path || "#";
-            link.style.cssText = "display:flex;align-items:center;gap:6px;text-decoration:none;color:inherit;cursor:pointer;";
-            link.innerHTML = '<img src="./assets/img/folder.ico" alt="folder" style="width:16px;height:16px;">' +
-              "<span>" + folder.name + "</span>";
-            link.addEventListener("click", function (event) {
-              event.preventDefault();
-              selectFolder(folder);
+        const titleBar = document.createElement("div");
+        titleBar.className = "title-bar";
+        const titleWrap = document.createElement("div");
+        titleWrap.style.display = "flex";
+        titleWrap.style.alignItems = "center";
+        titleWrap.style.gap = "4px";
+
+        const iconWrap = document.createElement("div");
+        iconWrap.className = "title-bar-controls";
+        iconWrap.innerHTML = '<img src="' + (config.icon || "./assets/img/file.png") + '" alt="icon">';
+
+        const titleText = document.createElement("div");
+        titleText.className = "title-bar-text";
+        titleText.textContent = config.title || "Window";
+
+        titleWrap.appendChild(iconWrap);
+        titleWrap.appendChild(titleText);
+
+        const controls = document.createElement("div");
+        controls.className = "title-bar-controls";
+        ["Minimize", "Maximize", "Close"].forEach(function (label) {
+          const btn = document.createElement("button");
+          btn.setAttribute("aria-label", label);
+          if (label === "Close") {
+            btn.addEventListener("click", function () {
+              windowEl.remove();
             });
-            li.appendChild(link);
-            folderItemsContainer.appendChild(li);
-          });
+          }
+          controls.appendChild(btn);
+        });
 
-          showDefaultText();
+        titleBar.appendChild(titleWrap);
+        titleBar.appendChild(controls);
+
+        const body = document.createElement("div");
+        body.className = "window-body";
+        body.style.flex = "1";
+        body.style.minHeight = "0";
+        body.style.overflow = "auto";
+        body.innerHTML = config.content || "";
+
+        windowEl.appendChild(titleBar);
+        windowEl.appendChild(body);
+        desktopLayer.appendChild(windowEl);
+        const floatingMaximizeButton = controls.querySelector('button[aria-label="Maximize"]');
+        if (floatingMaximizeButton) {
+          enableWindowMaximize(windowEl, floatingMaximizeButton);
+        }
+        if (typeof enableWindowDrag === "function") {
+          enableWindowDrag(windowEl, titleBar);
+        }
+        if (typeof enableWindowResize === "function") {
+          enableWindowResize(windowEl, { minWidth: 260, minHeight: 180 });
+        }
+        floatingWindowCount += 1;
+        return windowEl;
+      }
+
+      function openHtmlWindow(path, options) {
+        if (!path) {
+          return;
         }
 
-        fetch("./assets/c_drive/index.json")
+        const normalizedPath = normalizePath(path);
+        const meta = Object.assign({}, HTML_WINDOW_PRESETS[normalizedPath] || {}, options);
+        const fallbackTitle = (function () {
+          const segments = path.split(/[/\\]/);
+          const last = segments[segments.length - 1] || "Document";
+          return last;
+        })();
+
+        fetch(path)
           .then(function (res) {
             if (!res.ok) {
-              throw new Error("Failed to load folders");
+              throw new Error("Failed to load content.");
+            }
+            return res.text();
+          })
+          .then(function (html) {
+            let content = html;
+            try {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, "text/html");
+              if (doc && doc.body) {
+                const inlineStyles = Array.from(doc.querySelectorAll("style, link[rel='stylesheet']"))
+                  .map(function (el) {
+                    if (el.tagName.toLowerCase() === "style") {
+                      return "<style>" + el.innerHTML + "</style>";
+                    }
+                    const href = el.getAttribute("href");
+                    return href ? '<link rel="stylesheet" href="' + href + '">' : "";
+                  })
+                  .join("");
+                content = inlineStyles + doc.body.innerHTML;
+              }
+            } catch (error) {
+              content = html;
+            }
+            createFloatingWindow({
+              title: meta.title || fallbackTitle,
+              icon: meta.icon || "./assets/img/file.png",
+              content: content,
+              width: meta.width || 360,
+              height: meta.height || 220,
+            });
+          })
+          .catch(function (error) {
+            createFloatingWindow({
+              title: meta.title || fallbackTitle,
+              icon: meta.icon || "./assets/img/file.png",
+              content:
+                '<p style="margin:0;color:#c00;">' +
+                (error && error.message ? error.message : "Unable to open content.") +
+                "</p>",
+              width: 260,
+              height: 140,
+            });
+          });
+      }
+
+      window.openHtmlWindow = openHtmlWindow;
+
+      function enableWindowDrag(windowEl, handleEl) {
+        let isDragging = false;
+        let offsetX = 0;
+        let offsetY = 0;
+        let previousUserSelect = "";
+
+        function onMouseMove(event) {
+          if (!isDragging) {
+            return;
+          }
+
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+          const windowWidth = windowEl.offsetWidth;
+          const windowHeight = windowEl.offsetHeight;
+
+          let newLeft = event.clientX - offsetX;
+          let newTop = event.clientY - offsetY;
+
+          const edgeAllowance = 900;
+          const baseMinLeft = Math.min(0, viewportWidth - windowWidth);
+          const baseMaxLeft = Math.max(0, viewportWidth - windowWidth);
+          const baseMinTop = Math.min(0, viewportHeight - windowHeight);
+          const baseMaxTop = Math.max(0, viewportHeight - windowHeight);
+          const minLeft = baseMinLeft - edgeAllowance;
+          const maxLeft = baseMaxLeft + edgeAllowance;
+          const minTop = baseMinTop - edgeAllowance;
+          const maxTop = baseMaxTop + edgeAllowance;
+
+          if (newLeft < minLeft) {
+            newLeft = minLeft;
+          }
+          if (newLeft > maxLeft) {
+            newLeft = maxLeft;
+          }
+          if (newTop < minTop) {
+            newTop = minTop;
+          }
+          if (newTop > maxTop) {
+            newTop = maxTop;
+          }
+
+          windowEl.style.left = newLeft + "px";
+          windowEl.style.top = newTop + "px";
+          windowEl.style.right = "auto";
+          windowEl.style.bottom = "auto";
+        }
+
+        function stopDragging() {
+          if (!isDragging) {
+            return;
+          }
+          isDragging = false;
+          document.removeEventListener("mousemove", onMouseMove);
+          document.removeEventListener("mouseup", stopDragging);
+          document.body.style.userSelect = previousUserSelect;
+        }
+
+        handleEl.addEventListener("mousedown", function (event) {
+          if (event.button !== 0) {
+            return;
+          }
+          if (event.target.closest(".title-bar-controls")) {
+            return;
+          }
+          if (windowEl.dataset && windowEl.dataset.maximized === "true") {
+            return;
+          }
+
+          isDragging = true;
+          previousUserSelect = document.body.style.userSelect;
+          document.body.style.userSelect = "none";
+
+          const rect = windowEl.getBoundingClientRect();
+          offsetX = event.clientX - rect.left;
+          offsetY = event.clientY - rect.top;
+
+          windowEl.style.left = rect.left + "px";
+          windowEl.style.top = rect.top + "px";
+          windowEl.style.transform = "none";
+          windowEl.style.right = "auto";
+          windowEl.style.bottom = "auto";
+
+          document.addEventListener("mousemove", onMouseMove);
+          document.addEventListener("mouseup", stopDragging);
+          event.preventDefault();
+        });
+      }
+
+      function enableWindowMaximize(windowEl, buttonEl) {
+        if (!windowEl || !buttonEl) {
+          return;
+        }
+        windowEl.dataset.maximized = windowEl.dataset.maximized || "false";
+        let restoreStyles = null;
+
+        function maximizeWindow() {
+          restoreStyles = {
+            left: windowEl.style.left,
+            top: windowEl.style.top,
+            right: windowEl.style.right,
+            bottom: windowEl.style.bottom,
+            width: windowEl.style.width,
+            height: windowEl.style.height,
+            transform: windowEl.style.transform,
+            position: windowEl.style.position,
+          };
+          windowEl.style.position = "fixed";
+          windowEl.style.left = "0px";
+          windowEl.style.top = "0px";
+          windowEl.style.right = "0px";
+          windowEl.style.bottom = "0px";
+          windowEl.style.width = "auto";
+          windowEl.style.height = "auto";
+          windowEl.style.transform = "none";
+          windowEl.dataset.maximized = "true";
+          buttonEl.setAttribute("aria-label", "Restore");
+        }
+
+        function restoreWindow() {
+          if (restoreStyles) {
+            windowEl.style.left = restoreStyles.left;
+            windowEl.style.top = restoreStyles.top;
+            windowEl.style.right = restoreStyles.right;
+            windowEl.style.bottom = restoreStyles.bottom;
+            windowEl.style.width = restoreStyles.width;
+            windowEl.style.height = restoreStyles.height;
+            windowEl.style.transform = restoreStyles.transform;
+            windowEl.style.position = restoreStyles.position || "absolute";
+          }
+          windowEl.dataset.maximized = "false";
+          buttonEl.setAttribute("aria-label", "Maximize");
+          restoreStyles = null;
+        }
+
+        buttonEl.addEventListener("click", function (event) {
+          event.preventDefault();
+          if (windowEl.dataset.maximized === "true") {
+            restoreWindow();
+          } else {
+            maximizeWindow();
+          }
+        });
+      }
+
+      function applyPageMeta(meta) {
+        if (!meta) {
+          return;
+        }
+        if (meta.browseTitle) {
+          document.title = meta.browseTitle;
+        }
+        if (meta.windowTitle && mainWindowTitleText) {
+          mainWindowTitleText.textContent = meta.windowTitle;
+        }
+      }
+
+      function showDefaultText() {
+        if (!hasSelectedFolder) {
+          const statusLabel = defaultFolderLines && defaultFolderLines.length ? defaultContentTitle : "0 file(s)";
+          renderTextLines(defaultFolderLines, statusLabel, defaultContentTitle);
+        }
+      }
+
+      window.setMainDefaultContent = function (lines, title) {
+        if (Array.isArray(lines) && lines.length) {
+          defaultFolderLines = lines;
+        }
+        if (title) {
+          defaultContentTitle = title;
+        }
+        showDefaultText();
+      };
+
+      function renderTopic(topicId) {
+        if (!topicId) {
+          return;
+        }
+        if (!detailGroupsById) {
+          renderTextLines(["Content is still loading."], "Loading", "Loading");
+          return;
+        }
+        const group = detailGroupsById[topicId];
+        if (!group) {
+          renderTextLines(["Nothing to show for this section."], "Info", "Info");
+          return;
+        }
+
+        hasSelectedFolder = false;
+        if (Array.isArray(group.contacts)) {
+          renderContactList(group.contacts, group.title || "Contact", group.title || "Contact");
+          return;
+        }
+        renderTextLines(group.items || [], group.title || "Info", group.title || "Info");
+      }
+
+      topbarLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          const topic = link.getAttribute("data-topic");
+          renderTopic(topic);
+        });
+      });
+
+      function renderFiles(folder) {
+        setMainTitle(null);
+        setGridMode("grid");
+        fileGrid.innerHTML = "";
+        if (!folder.files || folder.files.length === 0) {
+          fileGrid.innerHTML = '<p style="color:#666;margin:0;">This folder is empty.</p>';
+          setStatus("0 file(s)");
+          hasSelectedFolder = true;
+          return;
+        }
+
+        folder.files.forEach(function (file) {
+          const tile = document.createElement("a");
+          tile.style.cssText = "display:flex;flex-direction:column;align-items:center;width:60px;text-decoration:none;color:inherit;margin-bottom:6px;";
+          tile.innerHTML = '<img src="./assets/img/file.ico" alt="file" style="width:24px;height:24px;">' +
+            "<span>" + file.name + "</span>";
+
+          const isHtmlFile = file.path && /\.html?$/i.test(file.path);
+          if (isHtmlFile) {
+            tile.href = "#";
+            tile.addEventListener("click", function (event) {
+              event.preventDefault();
+              openHtmlWindow(file.path, {
+                title: file.name || null,
+              });
+            });
+          } else if (file.path) {
+            tile.href = file.path;
+            tile.target = "_blank";
+            tile.rel = "noopener";
+          } else {
+            tile.href = "#";
+          }
+          fileGrid.appendChild(tile);
+        });
+
+        setStatus(folder.files.length + " file(s)");
+        hasSelectedFolder = true;
+      }
+
+      function selectFolder(folder) {
+        hasSelectedFolder = true;
+        renderFiles(folder);
+      }
+
+      function renderFolders(folders) {
+        folderItemsContainer.innerHTML = "";
+        if (!folders.length) {
+          folderItemsContainer.innerHTML = '<li style="color:#666;">No folders found.</li>';
+          renderTextLines([], "0 file(s)", "Folders");
+          return;
+        }
+
+        folders.forEach(function (folder) {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = folder.path || "#";
+          link.style.cssText = "display:flex;align-items:center;gap:6px;text-decoration:none;color:inherit;cursor:pointer;";
+          link.innerHTML = '<img src="./assets/img/folder.ico" alt="folder" style="width:16px;height:16px;">' +
+            "<span>" + folder.name + "</span>";
+          link.addEventListener("click", function (event) {
+            event.preventDefault();
+            selectFolder(folder);
+          });
+          li.appendChild(link);
+          folderItemsContainer.appendChild(li);
+        });
+
+        showDefaultText();
+      }
+
+      fetch("./assets/c_drive/index.json")
+        .then(function (res) {
+          if (!res.ok) {
+            throw new Error("Failed to load folders");
+          }
+          return res.json();
+        })
+        .then(function (data) {
+          renderFolders(data.folders || []);
+        })
+        .catch(function (error) {
+          folderItemsContainer.innerHTML = '<li style="color:red;">' + error.message + "</li>";
+          fileGrid.innerHTML = '<p style="color:red;margin:0;">Unable to load files.</p>';
+          setStatus("Error");
+        });
+
+      showDefaultText();
+
+      function cacheDetails(groups) {
+        detailGroupsById = groups.reduce(function (acc, group) {
+          if (group && group.id) {
+            acc[group.id] = group;
+          }
+          return acc;
+        }, {});
+
+        if (detailGroupsById.welcome) {
+          setMainDefaultContent(detailGroupsById.welcome.items || [], detailGroupsById.welcome.title || "Welcome");
+        }
+      }
+
+      function loadDetailsData() {
+        fetch("./assets/details.json")
+          .then(function (res) {
+            if (!res.ok) {
+              throw new Error("Failed to load details");
             }
             return res.json();
           })
           .then(function (data) {
-            renderFolders(data.folders || []);
+            const groups = Array.isArray(data.groups) ? data.groups : [];
+            cacheDetails(groups);
+            if (data && data.page) {
+              applyPageMeta(data.page);
+            }
           })
           .catch(function (error) {
-            folderItemsContainer.innerHTML = '<li style="color:red;">' + error.message + "</li>";
-            fileGrid.innerHTML = '<p style="color:red;margin:0;">Unable to load files.</p>';
-            setStatus("Error");
+            console.warn("details.json unavailable:", error.message);
           });
+      }
+      loadDetailsData();
+    })();
+  </script>
+</body>
 
-        showDefaultText();
-
-        function cacheDetails(groups) {
-          detailGroupsById = groups.reduce(function (acc, group) {
-            if (group && group.id) {
-              acc[group.id] = group;
-            }
-            return acc;
-          }, {});
-
-          if (detailGroupsById.welcome) {
-            setMainDefaultContent(detailGroupsById.welcome.items || [], detailGroupsById.welcome.title || "Welcome");
-          }
-        }
-
-        function loadDetailsData() {
-          fetch("./assets/details.json")
-            .then(function (res) {
-              if (!res.ok) {
-                throw new Error("Failed to load details");
-              }
-              return res.json();
-            })
-            .then(function (data) {
-              const groups = Array.isArray(data.groups) ? data.groups : [];
-              cacheDetails(groups);
-              if (data && data.page) {
-                applyPageMeta(data.page);
-              }
-            })
-            .catch(function (error) {
-              console.warn("details.json unavailable:", error.message);
-            });
-        }
-        loadDetailsData();
-      })();
-    </script>
-  </body>
 </html>
