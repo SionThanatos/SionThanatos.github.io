@@ -14,30 +14,44 @@
       overflow-wrap: anywhere
     }
 
-    h3,
-    h5 {
+    .cv-root h3,
+    .cv-root h5 {
       margin: 0 0 10px 0
     }
 
-    h3 {
+    .cv-root h3 {
       font-size: 20px;
       border-bottom: 1px solid #ccc;
       padding-bottom: 3px;
       margin-top: 26px;
       text-transform: uppercase;
-      letter-spacing: 0.5px
+      letter-spacing: 0.5px;
+      color: #000
     }
 
-    ul {
+    .cv-root p,
+    .cv-root li,
+    .cv-root span,
+    .cv-root em {
+      color: #000
+    }
+
+    .cv-root a,
+    .cv-root a:visited {
+      color: #000;
+      text-decoration: underline
+    }
+
+    .cv-root ul {
       margin: 0 0 16px 20px
     }
 
-    strong,
-    b {
+    .cv-root strong,
+    .cv-root b {
       color: #000;
     }
 
-    .muted {
+    .cv-root .muted {
       color: #000
     }
   </style>
@@ -45,7 +59,7 @@
 
 <body>
   <div class="cv-root">
-    <h3><em>Yunpeng Tian</em></h3>
+    <h3><em>Yunpeng Tian（田雲鵬）</em></h3>
     <p>Hong Kong SAR, China</p>
     <p>
       <a href="mailto:yun-peng.tian@connect.polyu.hk">yun-peng.tian@connect.polyu.hk</a><br />
@@ -102,6 +116,12 @@
 
     <h3>Publication</h3>
     <p>
+      <strong>Death by a Thousand Drips: Uncovering Critical Resource Leaks in the Windows Ecosystem</strong><br />
+      Feng Dong, Jianting Gao, <strong>Yunpeng Tian</strong>, Weifeng Yuan, Mu Zhang, Zesen Ye, Jietao Yang, and
+      Zhiniang Peng<br />
+      <em>In The 35nd USENIX Security Symposium (USENIX Security '26)</em>
+    </p>
+    <p>
       <strong>Error Messages to Fuzzing: Detecting XPS Parsing Vulnerabilities in Windows Printing
         Components</strong><br />
       <strong>Yunpeng Tian</strong>, Feng Dong, Junhai Wang, Mu Zhang, Zhiniang Peng, Zesen Ye, Xiapu Luo, and Haoyu
@@ -132,6 +152,10 @@
 
     <h3>Teaching</h3>
     <p>COMP3211, SOFTWARE ENGINEERING, PolyU, Teaching Assistant, 2025 Fall.</p>
+    <p>COMP3334, COMPUTER SYSTEMS SECURITY, PolyU, Teaching Assistant, 2026 Spring.</p>
+
+    <h3>Academic Service</h3>
+    <p>USENIX Security '26 Artifact Evaluation Committee</p>
 
     <h3>Honors &amp; Awards</h3>
     <p>
@@ -147,7 +171,7 @@
       Sep 2022 - Jun 2024
     </p>
 
-    <h3>Vulnerability Research</h3>
+    <h3>Vulnerability Research Areas</h3>
     <ul>
       <li>Windows XPS Printer</li>
       <li>Windows ALPC</li>

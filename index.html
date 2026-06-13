@@ -58,6 +58,35 @@
       height: 16px;
       cursor: se-resize
     }
+
+    #folder-files.text-view {
+      font-size: 17px !important;
+      line-height: 1.65 !important;
+      color: #000;
+    }
+
+    #folder-files.text-view a {
+      color: #000080 !important;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .faust-quote {
+      position: fixed;
+      right: 18px;
+      bottom: 14px;
+      z-index: 0;
+      max-width: min(360px, calc(100vw - 36px));
+      color: rgba(255, 255, 255, 0.72);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.35;
+      text-align: right;
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+      user-select: none;
+    }
   </style>
 </head>
 
@@ -108,7 +137,7 @@
         <div
           style="flex: 1; overflow-y: scroll; margin: 0; padding: 8px; background: #fff; border:1px solid #ccc; min-height:120px; flex-direction:column; gap:6px;">
           <!-- 右侧 -->
-          <h3 id="window-main-title" style="margin:0 0 6px 0;font-size:14px;">Welcome</h3>
+          <h3 id="window-main-title" style="margin:0 0 6px 0;font-size:18px;">Welcome</h3>
           <div id="folder-files" style="display:flex;flex-wrap:wrap;gap:6px;font-size:12px;line-height:1.4;">
             <p style="color:#666;margin:0;">Select a folder from the left to view files.</p>
           </div>
@@ -124,6 +153,7 @@
     </div>
 
   </div>
+  <div class="faust-quote">Verweile doch, du bist so schön!</div>
   <script>
     (function () {
       const folderItemsContainer = document.getElementById("folder-items");
@@ -186,9 +216,11 @@
         if (mode === "text") {
           fileGrid.style.flexWrap = "nowrap";
           fileGrid.style.flexDirection = "column";
+          fileGrid.classList.add("text-view");
         } else {
           fileGrid.style.flexWrap = defaultFlexWrap;
           fileGrid.style.flexDirection = defaultFlexDirection;
+          fileGrid.classList.remove("text-view");
         }
       }
 
@@ -207,7 +239,7 @@
         }
         lines.forEach(function (text) {
           const p = document.createElement("p");
-          p.style.margin = "0 0 4px 0";
+          p.style.margin = "0 0 8px 0";
           p.innerHTML = text;
           fileGrid.appendChild(p);
         });
