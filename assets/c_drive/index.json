@@ -6,6 +6,20 @@
       "files": []
     },
     {
+      "name": "blog",
+      "path": "assets/c_drive/blog",
+      "files": [
+        {
+          "name": "test",
+          "path": "assets/c_drive/blog/test.html"
+        },
+        {
+          "name": "test-md",
+          "path": "assets/c_drive/blog/test.md"
+        }
+      ]
+    },
+    {
       "name": "typ",
       "path": "assets/c_drive/typ",
       "files": [

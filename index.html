@@ -170,7 +170,8 @@
       const DEFAULT_WINDOW_WIDTH = 480;
       const DEFAULT_WINDOW_HEIGHT = 400;
       const HTML_WINDOW_PRESETS = {
-        "assets/c_drive/typ/cv.html": { width: 800, height: 720, title: "whoami" }
+        "assets/c_drive/typ/cv.html": { width: 800, height: 720, title: "whoami" },
+        "assets/c_drive/typ/temp1.html": { width: 980, height: 590, title: "temp1" }
       };
 
       if (mainWindow && mainTitleBar) {
@@ -465,7 +466,7 @@
           return last;
         })();
 
-        fetch(path)
+        fetch(path + (path.indexOf("?") === -1 ? "?" : "&") + "v=" + Date.now())
           .then(function (res) {
             if (!res.ok) {
               throw new Error("Failed to load content.");
@@ -515,6 +516,166 @@
       }
 
       window.openHtmlWindow = openHtmlWindow;
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function renderMarkdownInline(value) {
+        return escapeHtml(value)
+          .replace(/`([^`]+)`/g, "<code>$1</code>")
+          .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (_, text, href) {
+            return '<a href="' + escapeHtml(href) + '" target="_blank" rel="noopener">' + text + "</a>";
+          })
+          .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+          .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+      }
+
+      function markdownToHtml(markdown) {
+        const lines = String(markdown || "").replace(/\r\n/g, "\n").split("\n");
+        const output = [];
+        let paragraph = [];
+        let inList = false;
+        let inCode = false;
+        let codeLines = [];
+
+        function closeParagraph() {
+          if (!paragraph.length) {
+            return;
+          }
+          output.push("<p>" + renderMarkdownInline(paragraph.join(" ")) + "</p>");
+          paragraph = [];
+        }
+
+        function closeList() {
+          if (!inList) {
+            return;
+          }
+          output.push("</ul>");
+          inList = false;
+        }
+
+        lines.forEach(function (line) {
+          const fenceMatch = line.match(/^```/);
+          if (fenceMatch) {
+            if (inCode) {
+              output.push("<pre><code>" + escapeHtml(codeLines.join("\n")) + "</code></pre>");
+              codeLines = [];
+              inCode = false;
+            } else {
+              closeParagraph();
+              closeList();
+              inCode = true;
+            }
+            return;
+          }
+
+          if (inCode) {
+            codeLines.push(line);
+            return;
+          }
+
+          if (!line.trim()) {
+            closeParagraph();
+            closeList();
+            return;
+          }
+
+          const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
+          if (headingMatch) {
+            closeParagraph();
+            closeList();
+            const level = headingMatch[1].length;
+            output.push("<h" + level + ">" + renderMarkdownInline(headingMatch[2]) + "</h" + level + ">");
+            return;
+          }
+
+          const listMatch = line.match(/^\s*[-*]\s+(.+)$/);
+          if (listMatch) {
+            closeParagraph();
+            if (!inList) {
+              output.push("<ul>");
+              inList = true;
+            }
+            output.push("<li>" + renderMarkdownInline(listMatch[1]) + "</li>");
+            return;
+          }
+
+          paragraph.push(line.trim());
+        });
+
+        if (inCode) {
+          output.push("<pre><code>" + escapeHtml(codeLines.join("\n")) + "</code></pre>");
+        }
+        closeParagraph();
+        closeList();
+        return output.join("\n");
+      }
+
+      function openMarkdownWindow(path, options) {
+        if (!path) {
+          return;
+        }
+
+        const config = options || {};
+        const fallbackTitle = (function () {
+          const segments = path.split(/[/\\]/);
+          return segments[segments.length - 1] || "Markdown";
+        })();
+
+        fetch(path + (path.indexOf("?") === -1 ? "?" : "&") + "v=" + Date.now())
+          .then(function (res) {
+            if (!res.ok) {
+              throw new Error("Failed to load markdown.");
+            }
+            return res.text();
+          })
+          .then(function (markdown) {
+            const content =
+              "<style>" +
+              ".markdown-root{font-family:Arial,sans-serif;font-size:18px;line-height:1.6;margin:20px 24px 24px 36px;color:#000;overflow-wrap:anywhere;}" +
+              ".markdown-root h1,.markdown-root h2,.markdown-root h3{border-bottom:1px solid #ccc;padding-bottom:4px;color:#000;}" +
+              ".markdown-root h1{font-size:24px;margin:0 0 18px 0;}" +
+              ".markdown-root h2{font-size:22px;margin:24px 0 12px 0;}" +
+              ".markdown-root h3{font-size:20px;margin:20px 0 10px 0;}" +
+              ".markdown-root p{margin:0 0 12px 0;color:#000;}" +
+              ".markdown-root ul{margin:0 0 14px 22px;}" +
+              ".markdown-root li{margin:0 0 6px 0;color:#000;}" +
+              ".markdown-root a,.markdown-root a:visited{color:#000080;text-decoration:underline;}" +
+              ".markdown-root code{font-family:Consolas,'Courier New',monospace;background:#eee;padding:1px 4px;}" +
+              ".markdown-root pre{background:#eee;border:1px solid #999;padding:10px;overflow:auto;}" +
+              ".markdown-root pre code{background:transparent;padding:0;}" +
+              "</style>" +
+              '<article class="markdown-root">' +
+              markdownToHtml(markdown) +
+              "</article>";
+
+            createFloatingWindow({
+              title: config.title || fallbackTitle,
+              icon: config.icon || "./assets/img/file.png",
+              content: content,
+              width: config.width || 800,
+              height: config.height || 640,
+            });
+          })
+          .catch(function (error) {
+            createFloatingWindow({
+              title: config.title || fallbackTitle,
+              icon: config.icon || "./assets/img/file.png",
+              content:
+                '<p style="margin:0;color:#c00;">' +
+                (error && error.message ? error.message : "Unable to open markdown.") +
+                "</p>",
+              width: 300,
+              height: 140,
+            });
+          });
+      }
 
       function enableWindowDrag(windowEl, handleEl) {
         let isDragging = false;
@@ -738,11 +899,20 @@
             "<span>" + file.name + "</span>";
 
           const isHtmlFile = file.path && /\.html?$/i.test(file.path);
+          const isMarkdownFile = file.path && /\.md$/i.test(file.path);
           if (isHtmlFile) {
             tile.href = "#";
             tile.addEventListener("click", function (event) {
               event.preventDefault();
               openHtmlWindow(file.path, {
+                title: file.name || null,
+              });
+            });
+          } else if (isMarkdownFile) {
+            tile.href = "#";
+            tile.addEventListener("click", function (event) {
+              event.preventDefault();
+              openMarkdownWindow(file.path, {
                 title: file.name || null,
               });
             });
@@ -791,7 +961,7 @@
         showDefaultText();
       }
 
-      fetch("./assets/c_drive/index.json")
+      fetch("./assets/c_drive/index.json?v=" + Date.now())
         .then(function (res) {
           if (!res.ok) {
             throw new Error("Failed to load folders");
