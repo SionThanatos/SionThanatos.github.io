@@ -247,13 +247,31 @@
         setStatus(statusLabel || "Welcome");
       }
 
-      function renderContactList(contacts, statusLabel, titleText) {
+      function renderContactList(contacts, statusLabel, titleText, introLines) {
         setGridMode("text");
         fileGrid.innerHTML = "";
         setMainTitle(titleText || statusLabel || "Contact");
+        if (Array.isArray(introLines) && introLines.length) {
+          introLines.forEach(function (text) {
+            const p = document.createElement("p");
+            p.style.margin = "0 0 8px 0";
+            p.innerHTML = text;
+            fileGrid.appendChild(p);
+          });
+        }
         if (!contacts || !contacts.length) {
-          renderTextLines(["No contact information available."], statusLabel || "Contact", titleText || statusLabel || "Contact");
+          if (!fileGrid.children.length) {
+            renderTextLines(["No contact information available."], statusLabel || "Contact", titleText || statusLabel || "Contact");
+          }
           return;
+        }
+
+        if (fileGrid.children.length) {
+          const spacer = document.createElement("p");
+          spacer.style.margin = "10px 0 4px 0";
+          spacer.style.fontWeight = "bold";
+          spacer.textContent = "Contact";
+          fileGrid.appendChild(spacer);
         }
 
         contacts.forEach(function (contact) {
@@ -855,6 +873,9 @@
         if (!topicId) {
           return;
         }
+        if (topicId === "contact") {
+          topicId = "welcome";
+        }
         if (!detailGroupsById) {
           renderTextLines(["Content is still loading."], "Loading", "Loading");
           return;
@@ -867,7 +888,7 @@
 
         hasSelectedFolder = false;
         if (Array.isArray(group.contacts)) {
-          renderContactList(group.contacts, group.title || "Contact", group.title || "Contact");
+          renderContactList(group.contacts, group.title || "Contact", group.title || "Contact", group.items || []);
           return;
         }
         renderTextLines(group.items || [], group.title || "Info", group.title || "Info");
@@ -993,7 +1014,7 @@
       }
 
       function loadDetailsData() {
-        fetch("./assets/details.json")
+        fetch("./assets/details.json?v=" + Date.now())
           .then(function (res) {
             if (!res.ok) {
               throw new Error("Failed to load details");
