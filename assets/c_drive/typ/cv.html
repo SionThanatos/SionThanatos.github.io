@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>whoami</title>
+  <style>
+    .cv-root {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.55;
+      margin: 20px 20px 20px 40px;
+      color: #000;
+      overflow-wrap: anywhere
+    }
+
+    .cv-root h3,
+    .cv-root h5 {
+      margin: 0 0 10px 0
+    }
+
+    .cv-root h3 {
+      font-size: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 3px;
+      margin-top: 26px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #000
+    }
+
+    .cv-root h4 {
+      font-size: 18px;
+      margin: 16px 0 8px 0;
+      color: #000
+    }
+
+    .cv-root p,
+    .cv-root li,
+    .cv-root span,
+    .cv-root em {
+      color: #000
+    }
+
+    .cv-root a,
+    .cv-root a:visited {
+      color: #000;
+      text-decoration: underline
+    }
+
+    .cv-root ul {
+      margin: 0 0 16px 20px
+    }
+
+    .cv-root strong,
+    .cv-root b {
+      color: #000;
+    }
+
+    .cv-root .muted {
+      color: #000
+    }
+
+    .cv-tab-radio {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cv-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0 0 18px 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #999;
+    }
+
+    .cv-tabs label {
+      border: 1px solid #000;
+      background: #dfdfdf;
+      box-shadow: inset -1px -1px #808080, inset 1px 1px #fff;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 5px 9px;
+      color: #000;
+      user-select: none;
+    }
+
+    .cv-tabs label:active {
+      box-shadow: inset 1px 1px #808080, inset -1px -1px #fff;
+    }
+
+    .cv-section {
+      display: none;
+    }
+
+    #cv-tab-profile:checked~.cv-tabs label[for="cv-tab-profile"],
+    #cv-tab-publications:checked~.cv-tabs label[for="cv-tab-publications"],
+    #cv-tab-service:checked~.cv-tabs label[for="cv-tab-service"],
+    #cv-tab-vulnerability:checked~.cv-tabs label[for="cv-tab-vulnerability"],
+    #cv-tab-full:checked~.cv-tabs label[for="cv-tab-full"] {
+      background: #fff;
+      box-shadow: inset 1px 1px #808080, inset -1px -1px #fff;
+      font-weight: bold;
+    }
+
+    #cv-tab-profile:checked~.cv-sections .cv-profile-main,
+    #cv-tab-profile:checked~.cv-sections .cv-profile-extra,
+    #cv-tab-publications:checked~.cv-sections .cv-publications,
+    #cv-tab-service:checked~.cv-sections .cv-teaching-service,
+    #cv-tab-vulnerability:checked~.cv-sections .cv-vulnerability,
+    #cv-tab-full:checked~.cv-sections .cv-section {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cv-root">
+    <input class="cv-tab-radio" type="radio" name="cv-tab" id="cv-tab-profile" checked />
+    <input class="cv-tab-radio" type="radio" name="cv-tab" id="cv-tab-publications" />
+    <input class="cv-tab-radio" type="radio" name="cv-tab" id="cv-tab-service" />
+    <input class="cv-tab-radio" type="radio" name="cv-tab" id="cv-tab-vulnerability" />
+    <input class="cv-tab-radio" type="radio" name="cv-tab" id="cv-tab-full" />
+
+    <div class="cv-tabs">
+      <label for="cv-tab-profile">Profile</label>
+      <label for="cv-tab-publications">Publications</label>
+      <label for="cv-tab-service">Teaching &amp; Service</label>
+      <label for="cv-tab-vulnerability">Vulnerability Research</label>
+      <label for="cv-tab-full">Full CV</label>
+    </div>
+
+    <div class="cv-sections">
+      <section class="cv-section cv-profile-main">
+    <h3><em>Yunpeng Tian（田雲鵬）</em></h3>
+    <p>Hong Kong SAR, China</p>
+    <p>
+      <a href="mailto:yun-peng.tian@connect.polyu.hk">yun-peng.tian@connect.polyu.hk</a><br />
+      <s><a href="mailto:yunpeng.tian@polyu.edu.hk">yunpeng.tian@polyu.edu.hk</a></s><br />
+      <s><a href="mailto:siontian@hust.edu.cn">siontian@hust.edu.cn</a></s>
+    </p>
+    <p class="muted">
+      I am currently a Ph.D. student at the Department of Computing, The Hong Kong Polytechnic University
+      (PolyU), where I am advised by <a href="https://www4.comp.polyu.edu.hk/~csxluo/" target="_blank">Prof. Daniel
+        Xiapu Luo</a>. Prior to joining PolyU, I obtained my B.Eng. degree from Huazhong University of Science and
+      Technology (HUST) in 2024, where I was advised by <a href="https://howiepku.github.io/" target="_blank">Prof.
+        Haoyu Wang</a>.
+    </p>
+    <p class="muted">
+      My research focuses on System Security, Windows Internals, and Vulnerability Discovery, and I maintain a close
+      research collaboration with and receive guidance from <a href="https://sites.google.com/site/zhiniangpeng/"
+        target="_blank">Prof. Zhiniang Peng</a>. Beyond academia, I work as an independent vulnerability researcher,
+      exploring technically compelling real-world vulnerabilities.
+    </p>
+    <p class="muted">
+      My work has uncovered hundreds of real-world vulnerabilities and earned me recognition as a <a
+        href="https://www.microsoft.com/en-us/msrc/blog/2026/07/congratulations-to-the-msrc-2026-most-valuable-security-researchers1"
+        target="_blank"><strong>Microsoft Security Response Center (MSRC) Most Valuable Researcher (MVR)</strong></a>. I have appeared on
+      the <a href="https://msrc.microsoft.com/leaderboard" target="_blank">MSRC Researcher Leaderboard</a> for multiple
+      consecutive quarters, ranking <strong>27th globally</strong> on the 2026 MVR leaderboard and <strong>9th on the
+        Windows leaderboard</strong>. In the <a
+        href="https://www.microsoft.com/en-us/msrc/blog/2026/07/congratulations-to-the-top-msrc-2026-q2-security-researchers"
+        target="_blank">MSRC 2026 Q2 Security Researcher Leaderboard</a>, I ranked <strong>4th overall</strong> and
+      <strong>1st on the Windows leaderboard</strong>.
+    </p>
+
+    <h3>Education</h3>
+    <p>
+      <strong>Huazhong University of Science and Technology (HUST), Wuhan, China</strong><br />
+      <span class="muted">Bachelor of Engineering</span><br />
+      Sep 2020 – Jun 2024
+    </p>
+    <p>
+      <strong>The Hong Kong Polytechnic University (PolyU), Hong Kong SAR, China</strong><br />
+      <span class="muted">Doctor of Philosophy</span><br />
+      Sep 2025 – Present
+    </p>
+
+    <h3>Professional Experience</h3>
+    <p>
+      <strong>Tencent Technology Co., Ltd.</strong><br />
+      <span class="muted">Security Engineer Intern, Game Security Department (AntiCheatExpert)</span><br />
+      Shenzhen, China<br />
+      Jun – Aug 2023
+    </p>
+    <p>
+      <strong>Qihoo 360 Security Technology Inc.</strong><br />
+      <span class="muted">Security Researcher Intern, Network Threat Perception Department</span><br />
+      Beijing, China<br />
+      Jul – Sep 2022
+    </p>
+    <p>
+      <strong>The Hong Kong Polytechnic University</strong><br />
+      <span class="muted">Research Assistant, Department of Computing</span><br />
+      Hong Kong SAR, China<br />
+      Sep 2024 – Aug 2025
+    </p>
+
+      </section>
+
+      <section class="cv-section cv-publications">
+    <h3>Publications</h3>
+    <h4>2026</h4>
+    <p>
+      <strong>Systematizing Windows Vulnerability Research: Attack Surfaces, Tooling, and the Research-Practice
+        Gap</strong><br />
+      <strong>Yunpeng Tian</strong>, Feng Dong, Mu Zhang, Ao Huang, Zhiniang Peng, Xiapu Luo, and Haoyu Wang<br />
+      <em>In ACM Transactions on Software Engineering and Methodology (TOSEM)</em>
+    </p>
+    <p>
+      <strong>Death by a Thousand Drips: Uncovering Critical Resource Leaks in the Windows Ecosystem</strong><br />
+      Feng Dong, Jianting Gao, <strong>Yunpeng Tian</strong>, Weifeng Yuan, Mu Zhang, Zesen Ye, Jietao Yang, and
+      Zhiniang Peng<br />
+      <em>In The 35nd USENIX Security Symposium (USENIX Security '26)</em>
+    </p>
+    <h4>2025</h4>
+    <p>
+      <strong>Error Messages to Fuzzing: Detecting XPS Parsing Vulnerabilities in Windows Printing
+        Components</strong><br />
+      <strong>Yunpeng Tian</strong>, Feng Dong, Junhai Wang, Mu Zhang, Zhiniang Peng, Zesen Ye, Xiapu Luo, and Haoyu
+      Wang<br />
+      <em>In The 32nd ACM Conference on Computer and Communications Security (CCS'25)</em><br />
+      Taipei, China, Oct 2025
+    </p>
+    <p>
+      <strong>Be Careful of What You Embed: Demystifying OLE Vulnerabilities</strong><br />
+      <strong>Yunpeng Tian</strong>, Feng Dong, Haoyi Liu, Meng Xu, Zhiniang Peng, Zesen Ye, Shenghui Li, Xiapu Luo, and
+      Haoyu Wang<br />
+      <em>In The Network and Distributed System Security Symposium (NDSS’25)</em><br />
+      San Diego, Feb 2025
+    </p>
+    <p>
+      <strong>Needle in a Haystack: Automated and Scalable Vulnerability Hunting in the Windows ALPC Sea</strong><br />
+      Haoyi Liu, Feng Dong, <strong>Yunpeng Tian</strong>, Mu Zhang, Xuefeng Li, Fangming Gu, Zhiniang Peng and Haoyu
+      Wang<br />
+      <em>In The 32nd ACM Conference on Computer and Communications Security (CCS'25)</em><br />
+      Taipei, China, Oct 2025
+    </p>
+    <p>
+      <strong>Uncovering Vulnerabilities in Solana Smart Contracts</strong><br />
+      Kunsong Zhao, <strong>Yunpeng Tian</strong>, Zuchao Ma, Xiapu Luo<br />
+      <em>In The 40th IEEE/ACM International Conference on Automated Software Engineering (ASE'2025)</em><br />
+      Seoul, Korea, Nov 2025
+    </p>
+
+      </section>
+
+      <section class="cv-section cv-teaching-service">
+    <h3>Teaching</h3>
+    <p>COMP3211, SOFTWARE ENGINEERING, PolyU, Teaching Assistant, 2025 Fall.</p>
+    <p>COMP3334, COMPUTER SYSTEMS SECURITY, PolyU, Teaching Assistant, 2026 Spring.</p>
+
+    <h3>Academic Service</h3>
+    <p>USENIX Security '27 Program Committee</p>
+    <p>USENIX Security '26 Artifact Evaluation Committee</p>
+
+      </section>
+
+      <section class="cv-section cv-profile-extra">
+    <h3>Honors &amp; Awards</h3>
+    <p>
+      <strong>Nation College Student Information Security Contest 2023</strong><br />
+      <span class="muted">First place in Central China (rank 1/80) & Nation Second Prize for CTF</span>
+    </p>
+
+
+    <h3>Leadership &amp; Volunteering</h3>
+    <p>
+      <strong>L3HSEC CTF TEAM</strong><br />
+      <span class="muted">Reverse Engineering Team</span><br />
+      Sep 2022 - Jun 2024
+    </p>
+
+      </section>
+
+      <section class="cv-section cv-vulnerability">
+    <h3>Vulnerability Research Areas</h3>
+    <ul>
+      <li><a href="https://dl.acm.org/doi/10.1145/3719027.3744807" target="_blank">Windows XPS Printer</a>: discovered 102 vulnerabilities, with 17 assigned CVEs.</li>
+      <li><a href="https://dl.acm.org/doi/10.1145/3719027.3765180" target="_blank">Windows ALPC</a>: confirmed 12 vulnerabilities, with 10 assigned CVEs.</li>
+      <li>Windows Bootloader</li>
+      <li><a href="https://www.ndss-symposium.org/ndss-paper/be-careful-of-what-you-embed-demystifying-ole-vulnerabilities/" target="_blank">Microsoft Office OLE</a>: confirmed 26 vulnerabilities, with 17 assigned CVEs.</li>
+      <li>Windows Remote Services: discovered 19 vulnerabilities, with 12 assigned CVEs.</li>
+      <li>Windows Symbolic Link</li>
+      <li>Windows Win32k</li>
+    </ul>
+
+    <h3>CVE with <a href="https://diffract-ai.com/" target="_blank">Diffract</a></h3>
+    <ul>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-60710" target="_blank">CVE-2025-60710</a>: Host Process for Windows Tasks Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-26168" target="_blank">CVE-2026-26168</a>: Windows Ancillary Function Driver for WinSock Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-32223" target="_blank">CVE-2026-32223</a>: Windows USB Printing Stack (usbprint.sys) Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-33825" target="_blank">CVE-2026-33825</a>: Microsoft Defender Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-40409" target="_blank">CVE-2026-40409</a>: Windows Universal Disk Format File System Driver (UDFS) Elevation of Privilege Vulnerability</li>
+      <li><a href="https://github.com/microsoft/kiota/security/advisories/GHSA-2hx3-vp6r-mg3f" target="_blank">CVE-2026-41134</a>: Code Generation Literal Injection in Microsoft Kiota</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-42828" target="_blank">CVE-2026-42828</a>: Windows Projected File System Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-42968" target="_blank">CVE-2026-42968</a>: Windows Telephony Server Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-42974" target="_blank">CVE-2026-42974</a>: Windows Performance Monitor Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-42981" target="_blank">CVE-2026-42981</a>: Windows Performance Monitor Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-44811" target="_blank">CVE-2026-44811</a>: Windows DWM Core Library Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-44814" target="_blank">CVE-2026-44814</a>: Windows DWM Core Library Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-45637" target="_blank">CVE-2026-45637</a>: Microsoft DWM Core Library Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-45638" target="_blank">CVE-2026-45638</a>: Windows Ancillary Function Driver for WinSock Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-49168" target="_blank">CVE-2026-49168</a>: Storage Spaces Direct Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-49184" target="_blank">CVE-2026-49184</a>: Windows NTFS Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-49789" target="_blank">CVE-2026-49789</a>: Windows NTFS Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-49790" target="_blank">CVE-2026-49790</a>: Windows Universal Disk Format File System Driver (UDFS) Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-49797" target="_blank">CVE-2026-49797</a>: Windows NTFS Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50298" target="_blank">CVE-2026-50298</a>: Windows Spaceport.sys Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50299" target="_blank">CVE-2026-50299</a>: Windows Storage Spaces Direct Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50309" target="_blank">CVE-2026-50309</a>: Windows NTFS Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50318" target="_blank">CVE-2026-50318</a>: Windows Resilient File System (ReFS) Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50333" target="_blank">CVE-2026-50333</a>: Windows Spaceport.sys Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50341" target="_blank">CVE-2026-50341</a>: Windows NTFS Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50367" target="_blank">CVE-2026-50367</a>: Windows Sensor Data Service Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50371" target="_blank">CVE-2026-50371</a>: Windows LUA File Virtualization Filter Driver Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50375" target="_blank">CVE-2026-50375</a>: DirectX Graphics Kernel Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50383" target="_blank">CVE-2026-50383</a>: Windows Print Spooler Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50386" target="_blank">CVE-2026-50386</a>: Windows NTFS Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50402" target="_blank">CVE-2026-50402</a>: NTFS Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50407" target="_blank">CVE-2026-50407</a>: Windows Resilient File System (ReFS) Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50412" target="_blank">CVE-2026-50412</a>: Windows NTFS Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50416" target="_blank">CVE-2026-50416</a>: Win32k Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50417" target="_blank">CVE-2026-50417</a>: Windows NTFS Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50422" target="_blank">CVE-2026-50422</a>: Windows NTFS Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50441" target="_blank">CVE-2026-50441</a>: Windows Resilient File System (ReFS) Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50448" target="_blank">CVE-2026-50448</a>: Windows NTFS Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50454" target="_blank">CVE-2026-50454</a>: Windows User Interface Core Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50461" target="_blank">CVE-2026-50461</a>: Windows NTFS Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50463" target="_blank">CVE-2026-50463</a>: Windows Kernel Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50501" target="_blank">CVE-2026-50501</a>: Windows Resilient File System (ReFS) Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50668" target="_blank">CVE-2026-50668</a>: Windows Resilient File System (ReFS) Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-54987" target="_blank">CVE-2026-54987</a>: Windows Overlay Filter Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-54990" target="_blank">CVE-2026-54990</a>: Remote Desktop Client Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-56182" target="_blank">CVE-2026-56182</a>: Windows NTFS Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-57095" target="_blank">CVE-2026-57095</a>: Win32k Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-58609" target="_blank">CVE-2026-58609</a>: Windows Graphics Component Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-59134" target="_blank">CVE-2026-59134</a>: Remote Desktop Client Remote Code Execution Vulnerability</li>
+      <li><a href="https://github.com/microsoft/kiota/security/advisories/GHSA-xg2h-5xr2-29jw" target="_blank">CVE-2026-59861</a>: Code Generation Literal Injection in Kiota Ruby Generator</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-61353" target="_blank">CVE-2026-61353</a>: Windows Telephony Service Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-61363" target="_blank">CVE-2026-61363</a>: Remote Desktop Client Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62699" target="_blank">CVE-2026-62699</a>: Windows Universal Disk Format File System Driver (UDFS) Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62700" target="_blank">CVE-2026-62700</a>: Windows NTFS Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62747" target="_blank">CVE-2026-62747</a>: Windows Device Association Service Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62751" target="_blank">CVE-2026-62751</a>: Windows Projected File System Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62755" target="_blank">CVE-2026-62755</a>: Windows DHCP Client Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62793" target="_blank">CVE-2026-62793</a>: Windows NTFS Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62796" target="_blank">CVE-2026-62796</a>: Windows NTFS Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62797" target="_blank">CVE-2026-62797</a>: Windows NTFS Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62880" target="_blank">CVE-2026-62880</a>: Windows NTFS Elevation of Privilege Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62887" target="_blank">CVE-2026-62887</a>: Windows NTFS Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-65662" target="_blank">CVE-2026-65662</a>: Windows GDI Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-65784" target="_blank">CVE-2026-65784</a>: Windows NTFS Information Disclosure Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-65787" target="_blank">CVE-2026-65787</a>: Desktop Window Manager Elevation of Privilege Vulnerability</li>
+    </ul>
+      </section>
+    </div>
+  </div>
+</body>
+
+</html>

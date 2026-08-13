@@ -1,0 +1,28 @@
+{
+	"page": {
+		"browseTitle": "Sion Tian's Webpage",
+		"windowTitle": "Sion Tian's home"
+	},
+	"groups": [
+		{
+			"id": "welcome",
+			"title": "Welcome",
+			"items": [
+				"Hello! Thanks for stopping by.",
+				"I'm Yunpeng TIAN.",
+				"I'm a security researcher.",
+				"You can <a href=\"#\" style=\"color:blue;text-decoration:underline;\" onclick=\"window.openHtmlWindow('assets/c_drive/typ/cv.html'); return false;\">click here to view my CV</a>.",
+				"If you are interested in collaboration, please do not hesitate to contact me at <a href=\"mailto:yun-peng.tian@connect.polyu.hk\" style=\"color:blue;text-decoration:underline;\">yun-peng.tian@connect.polyu.hk</a>."
+			]
+		},
+		{
+			"id": "help",
+			"title": "Help",
+			"items": [
+				"Use the top-left menu to switch sections.",
+				"Double-click icons to open files in new windows.",
+				"Need assistance? Ping me via the Contact group."
+			]
+		}
+	]
+}
