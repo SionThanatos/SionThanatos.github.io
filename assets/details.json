@@ -11,7 +11,7 @@
 				"Hello! Thanks for stopping by.",
 				"I'm Yunpeng TIAN.",
 				"I'm a security researcher.",
-				"You can <a href=\"#\" style=\"color:blue;text-decoration:underline;\" onclick=\"window.openHtmlWindow('assets/c_drive/typ/cv.html'); return false;\">click here to view my CV</a>.",
+				"You can <a href=\"#\" style=\"color:blue;text-decoration:underline;\" onclick=\"window.openHtmlWindow('assets/c_drive/typ/cv.html'); return false;\">view my CV</a>.",
 				"If you are interested in collaboration, please do not hesitate to contact me at <a href=\"mailto:yun-peng.tian@connect.polyu.hk\" style=\"color:blue;text-decoration:underline;\">yun-peng.tian@connect.polyu.hk</a>."
 			]
 		},

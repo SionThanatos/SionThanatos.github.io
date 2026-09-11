@@ -61,6 +61,81 @@
       color: #000
     }
 
+    .profile-link-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0 18px;
+    }
+
+    .cv-root .profile-link-button,
+    .cv-root .profile-link-button:visited {
+      box-sizing: border-box;
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border: 0;
+      background: #c0c0c0;
+      box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff,
+        inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+      color: #000;
+      font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .cv-root .profile-link-button:active {
+      padding: 5px 8px 3px 10px;
+      box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a,
+        inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+    }
+
+    .profile-link-button:focus-visible {
+      outline: 1px dotted #000;
+      outline-offset: -4px;
+    }
+
+    .profile-link-icon {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 16px;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    .cv-profile-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 18px;
+      margin: 26px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .cv-root .cv-profile-heading h3 {
+      flex: 1 1 250px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .cv-profile-heading .profile-link-row {
+      flex: 0 0 auto;
+      margin: 0;
+    }
+
+    @media (max-width: 560px) {
+      .cv-profile-heading .profile-link-row {
+        flex-basis: 100%;
+      }
+    }
+
     .cv-tab-radio {
       position: absolute;
       opacity: 0;
@@ -135,7 +210,13 @@
 
     <div class="cv-sections">
       <section class="cv-section cv-profile-main">
-    <h3><em>Yunpeng Tian（田雲鵬）</em></h3>
+    <div class="cv-profile-heading">
+      <h3><em>Yunpeng Tian（田雲鵬）</em></h3>
+      <div class="profile-link-row">
+        <a class="profile-link-button" href="https://scholar.google.com/citations?user=WqbGs2sAAAAJ" target="_blank" rel="noopener noreferrer"><img class="profile-link-icon" src="/assets/img/google-scholar-pixel.svg" alt="">Google Scholar</a>
+        <a class="profile-link-button" href="https://x.com/HototogisuTian" target="_blank" rel="noopener noreferrer"><img class="profile-link-icon" src="/assets/img/x-pixel.svg" alt="">X (Twitter)</a>
+      </div>
+    </div>
     <p>Hong Kong SAR, China</p>
     <p>
       <a href="mailto:yun-peng.tian@connect.polyu.hk">yun-peng.tian@connect.polyu.hk</a><br />
@@ -435,6 +516,7 @@
       <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-72946" target="_blank">CVE-2026-72946</a>: Microsoft Storage Port Driver Elevation of Privilege Vulnerability</li>
       <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-72999" target="_blank">CVE-2026-72999</a>: Windows USB Hub Driver Elevation of Privilege Vulnerability</li>
       <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-73023" target="_blank">CVE-2026-73023</a>: Windows Imaging Component Remote Code Execution Vulnerability</li>
+      <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-73024" target="_blank">CVE-2026-73024</a>: Windows Services for NFS ONCRPC XDR Driver Elevation of Privilege Vulnerability</li>
       <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-77904" target="_blank">CVE-2026-77904</a>: Windows Volume Manager Extension Driver Elevation of Privilege Vulnerability</li>
       <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-78451" target="_blank">CVE-2026-78451</a>: Microsoft Windows SCSI Class System File Elevation of Privilege Vulnerability</li>
       <li><a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-78452" target="_blank">CVE-2026-78452</a>: Microsoft Windows SCSI Class System File Information Disclosure Vulnerability</li>
