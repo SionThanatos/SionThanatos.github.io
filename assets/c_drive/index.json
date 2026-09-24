@@ -1,0 +1,45 @@
+{
+  "folders": [
+    {
+      "name": "bug",
+      "path": "assets/c_drive/bug",
+      "files": []
+    },
+    {
+      "name": "blog",
+      "path": "assets/c_drive/blog",
+      "files": [
+        {
+          "name": "test",
+          "path": "assets/c_drive/blog/test.html"
+        },
+        {
+          "name": "test-md",
+          "path": "assets/c_drive/blog/test.md"
+        }
+      ]
+    },
+    {
+      "name": "typ",
+      "path": "assets/c_drive/typ",
+      "files": [
+        {
+          "name": "cv",
+          "path": "assets/c_drive/typ/cv.html"
+        },
+        {
+          "name": "domnload",
+          "path": "assets/c_drive/typ/domnload.md"
+        },
+        {
+          "name": "temp1",
+          "path": "assets/c_drive/typ/temp1.html"
+        },
+        {
+          "name": "temp2",
+          "path": "assets/c_drive/typ/temp2.html"
+        }
+      ]
+    }
+  ]
+}

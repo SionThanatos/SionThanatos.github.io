@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>My CV — Windows 98 Style</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      /* 仅作页面背景与居中用途，窗口外观完全由 style.css 提供 */
+      html,body{height:100%}
+      body{background:#0f8f8f;padding:18px;font-family:Arial}
+      .page{max-width:980px;margin:0 auto}
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Window 1: user's template -->
+      <div class="window" id="window-1" style="margin-bottom:18px">
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 4px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/mycomputer.png" alt="icon">
+            </div>
+            <div class="title-bar-text">Sion Tian's Webpage</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Restore"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body" style="margin:6px 6 0 0">
+          <ul class="tree-view" style="padding-left:12px;">
+            <li>
+              <div style="display:flex; align-items:center; gap:6px">
+                <img src="./assets/img/disk.png" alt="C:\"> 
+                <span style="cursor: pointer;">(C:)</span>
+              </div>
+
+              <ul style="margin:6px 0 0 6px"> 
+                <li>
+                  <div style="display:flex; align-items:center; gap:6px">
+                    <img src="./assets/img/folder.ico" alt="folder">
+                    <span>forder1</span>
+                  </div>
+                  <ul style="margin:6px 0 0 6px">
+                    <li><a href="./assets/c_drive/forder1/window11.html">window11.html</a></li>
+                    <li><a href="./assets/c_drive/forder1/window12.html">window12.html</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <div style="display:flex; align-items:center; gap:6px">
+                    <img src="./assets/img/folder.ico" alt="folder">
+                    <span>forder2</span>
+                  </div>
+                </li>
+
+                <li>
+                  <a href="./assets/c_drive/window1.html">
+                    <img src="./assets/img/file.png" style="width:14px; vertical-align:middle" alt="file"> window1.html
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="status-bar" style="padding:0 8px">
+          <p class="status-bar-field" style="flex:0 0 120px;width:120px;min-width:120px">0 objects</p>
+          <p class="status-bar-field"></p>
+        </div>
+      </div>
+
+      <!-- Window 2: second window showcasing another folder / content -->
+      <div class="window" id="window-2" style="margin-bottom:18px">
+        
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">title-bar-text</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body">
+          <p class="meta">meta 列表</p>
+          <ul>
+            <li>
+              <span style="display:inline-block;width:100px"><strong>name1</strong></span>
+              <a href="https://www.google.com">超链接1</a>
+            </li>
+            <li>
+              <span style="display:inline-block;width:100px"><strong>name2</strong></span>
+              <a href="https://www.example.com">超链接2</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Window 3: duplicate of Window 2 body (template) -->
+      <div class="window" id="window-3" style="margin-bottom:18px">
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">Title</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body" style="height: 200px; overflow-y: auto; margin: 0;">
+          <p>这是窗口内容的第一行。</p>
+          <p>这是第二行内容。</p>
+          <p>第三行内容。</p>
+          <p>第四行内容。</p>
+          <p>第五行内容。</p>
+          <p>第六行内容。</p>
+          <p>第七行内容。</p>
+          <p>第八行内容。</p>
+          <p>第九行内容。</p>
+          <p>第十行内容。</p>
+          <p>第十一行内容。</p>
+          <p>第十二行内容。</p>
+          <p>第十三行内容。</p>
+          <p>第十四行内容。</p>
+          <p>第十五行内容。</p>
+        </div>
+      </div>
+
+      <!-- Window 4 -->
+      <div class="window" id="window-4" style="margin-bottom:18px">
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">Title 4</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body">
+          <ul class="topbar" style="display:flex;gap:8px;padding:0;list-style:none;margin:0 0 10px 0">
+            <li><a onclick="alert('Contract')" style="cursor:pointer"><u>C</u>ontract</a></li>
+            <li><a onclick="alert('Help')" style="cursor:pointer"><u>H</u>elp</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Window 5 -->
+      <div class="window" id="window-5" style="margin-bottom:18px">
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">Title 5</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body" style="display: flex; gap: 4px;">
+          <div style="flex: 1; height: 100px; overflow-y: auto; margin: 0; border: 1px solid #ccc; padding: 5px;">
+            <p>左侧区域 - 第一行内容。</p>
+            <p>第二行内容。</p>
+            <p>第三行内容。</p>
+            <p>第四行内容。</p>
+
+          </div>
+          <div style="flex: 1; height: 100px; overflow-y: auto; margin: 0; border: 1px solid #ccc; padding: 5px;">
+            <p>右侧区域 - 第一行内容。</p>
+            <p>第二行内容。</p>
+            <p>第三行内容。</p>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Window 6 -->
+      <div class="window" id="window-6" style="margin-bottom:18px">
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">6</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body" style="height: 200px; overflow-y: auto; margin: 0;">
+          <div style="display: flex; flex-wrap: wrap; gap: 5px; padding: 10px 0;">
+            <a href="./assets/c_drive/file1.html" target="_blank" style="display:flex;flex-direction:column;align-items:center;width:60px;text-decoration:none;color:inherit;">
+              <img src="./assets/img/file.ico" alt="file" style="width: 24px; height: 24px;">
+              <span>file1.html</span>
+            </a>
+            <a href="./assets/c_drive/file2.html" target="_blank" style="display:flex;flex-direction:column;align-items:center;width:60px;text-decoration:none;color:inherit;">
+              <img src="./assets/img/file.ico" alt="file" style="width: 24px; height: 24px;">
+              <span>file2.html</span>
+            </a>
+            <a href="./assets/c_drive/file3.html" target="_blank" style="display:flex;flex-direction:column;align-items:center;width:60px;text-decoration:none;color:inherit;">
+              <img src="./assets/img/file.ico" alt="file" style="width: 24px; height: 24px;">
+              <span>file3.html</span>
+            </a>
+            <a href="./assets/c_drive/file4.html" target="_blank" style="display:flex;flex-direction:column;align-items:center;width:60px;text-decoration:none;color:inherit;">
+              <img src="./assets/img/file.ico" alt="file" style="width: 24px; height: 24px;">
+              <span>file4.html</span>
+            </a>
+            <a href="./assets/c_drive/file5.html" target="_blank" style="display:flex;flex-direction:column;align-items:center;width:60px;text-decoration:none;color:inherit;">
+              <img src="./assets/img/file.ico" alt="file" style="width: 24px; height: 24px;">
+              <span>file5.html</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Window 7 -->
+      <div class="window" id="window-7" style="width: 600px; margin-bottom:18px">
+        <!-- 窗口 title-bar -->
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">7</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <!-- 顶部 topbar -->
+        <ul class="topbar" style="display:flex;gap:8px;padding:0;list-style:none;margin:2px 8px;">
+          <li><a onclick="alert('Contract')" style="cursor:pointer"><u>C</u>ontract</a></li>
+          <li><a onclick="alert('Help')" style="cursor:pointer"><u>H</u>elp</a></li>
+        </ul>
+
+        <!-- 中间 window-body -->
+        <div class="window-body" style="display: flex; gap: 2px;margin:2px 8px;">
+          <div style="flex: 0 0 200px; overflow-y: scroll; margin: 0; padding: 0px; background: #fff;">
+            <!-- 左侧 -->
+            <ul class="tree-view" style="height: 150px;padding-left:12px;">
+            <li>
+              <div style="display:flex; align-items:center; gap:6px">
+                <img src="./assets/img/disk.png" alt="C:\"> 
+                <span style="cursor: default;">(C:)</span>
+              </div>
+
+              <ul style="margin:6px 0 0 6px"> 
+                <li>
+                  <div style="display:flex; align-items:center; gap:6px">
+                    <img src="./assets/img/folder.ico" alt="folder">
+                    <span>forder1</span>
+                  </div>
+                </li>
+
+                <li>
+                  <div style="display:flex; align-items:center; gap:6px">
+                    <img src="./assets/img/folder.ico" alt="folder">
+                    <span>forder2</span>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            </ul>
+          </div>
+          <div style="flex: 1; overflow-y: scroll; margin: 0; padding: 0px; background: #fff;">
+            <!-- 右侧 -->
+            <div style="display: flex; flex-wrap: wrap; gap: 5px; padding: 10px 0;">
+              <a href="_blank" target="_blank" style="display:flex;flex-direction:column;align-items:center;width:60px;text-decoration:none;color:inherit;">
+                <img src="./assets/img/file.ico" alt="file" style="width: 24px; height: 24px;">
+                <span>file1.html</span>
+              </a>
+              <a href="_blank" target="_blank" style="display:flex;flex-direction:column;align-items:center;width:60px;text-decoration:none;color:inherit;">
+                <img src="./assets/img/file.ico" alt="file" style="width: 24px; height: 24px;">
+                <span>file2.html</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- 底部 status-bar -->
+        <div class="status-bar" style="padding:0 8px">
+          <p class="status-bar-field" style="flex:0 0 120px;width:120px;min-width:120px">0 object(s)</p>
+          <p class="status-bar-field"></p>
+        </div>
+
+      </div>
+
+
+      <!-- Window 8 -->
+      <div class="window" id="window-8" style="margin-bottom:18px">
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">8</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body">
+          <!-- 示例：点击按钮使显示的值加 1（不包含 JS） -->
+          <!--
+            说明（不使用 JavaScript 的两种常见实现方法）:
+
+            方案 A — 后端处理（传统方式，适用于有服务器）：
+            1. 将按钮放入一个带有隐藏字段的表单，隐藏字段保存当前计数值。
+            2. 点击按钮提交表单到服务器（例如 POST /increment）。
+            3. 服务器接收请求，读取当前值，value += 1，返回新的页面或重定向到带有新值的页面。
+            4. 页面在服务端渲染显示新的计数值。
+
+            方案 B — Progressive Enhancement（无 JS，使用纯 HTML 提示逻辑）：
+            - 在静态页面中显示按钮和当前值，用户可以手动刷新或使用表单提交到服务器。
+            - 若未来允许加入 JS，可以用 unobtrusive JS 监听按钮并异步更新计数。
+
+            下方仅给出纯 HTML 的交互界面示例（按钮本身不会在客户端变更数字，逻辑请参照上方注释在服务端实现）：
+          -->
+
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding:8px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <strong>Counter:</strong>
+              <!-- 当前显示的计数值：若用后端实现，服务器应把实际数值写入这里 -->
+              <span style="min-width:24px;display:inline-block;text-align:center;background:#fff;padding:2px 6px;border:1px solid #ccc;">0</span>
+            </div>
+
+            <div>
+              <!-- 这是一个普通按钮。按照上方的“方案 A”，把它放进表单并提交到后端接口来实现自增。 -->
+              <button type="button">Increment</button>
+            </div>
+
+            <div style="color:#666;font-size:12px;">
+              注：此示例不包含 JavaScript。若需要立即在客户端看到数字变化，需要在页面中加入少量 JS 或者使用服务端表单提交。上面的注释已说明如何不使用 JS 在后端实现计数自增。
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- Window 9 -->
+      <div class="window" id="window-9" style="margin-bottom:18px">
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">9</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body">
+          
+        </div>
+      </div>
+
+
+
+    </div>
+  </body>
+</html>
