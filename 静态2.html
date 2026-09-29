@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>My CV — Windows 98 Style</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      html,body{height:100%}
+      body{background:#0f8f8f;padding:18px;font-family:Arial}
+      .page{max-width:980px;margin:0 auto}
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Window 2: second window showcasing another folder / content -->
+      <div class="window" id="window-2" style="margin-bottom:18px">
+        
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">title-bar-text</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body">
+          <p class="meta">meta 列表</p>
+          <ul>
+            <li>
+              <span style="display:inline-block;width:100px"><strong>name1</strong></span>
+              <a href="https://www.google.com">超链接1</a>
+            </li>
+            <li>
+              <span style="display:inline-block;width:100px"><strong>name2</strong></span>
+              <a href="https://www.example.com">超链接2</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Window main -->
+      <div class="window" id="window-main" style="width: 600px; margin-bottom:18px">
+        <!-- 窗口 title-bar -->
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 4px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/mycomputer.png" alt="icon">
+            </div>
+            <div class="title-bar-text">CV</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <!-- 顶部 topbar -->
+        <ul class="topbar" style="display:flex;gap:8px;padding:0;list-style:none;margin:2px 8px;">
+          <li><a href="#" data-topic="contact" style="cursor:pointer;text-decoration:none;"><u>C</u>ontact</a></li>
+          <li><a href="#" data-topic="help" style="cursor:pointer;text-decoration:none;"><u>H</u>elp</a></li>
+        </ul>
+
+        <!-- 中间 window-body -->
+        <div class="window-body" style="display: flex; gap: 2px;margin:2px 8px;">
+          <div style="flex: 0 0 200px; overflow-y: scroll; margin: 0; padding: 0px; background: #fff;">
+            <!-- 左侧 -->
+            <ul class="tree-view" style="height: 150px;padding-left:12px;">
+              <li>
+                <div style="display:flex; align-items:center; gap:6px">
+                  <img src="./assets/img/disk.png" alt="C:\"> 
+                  <span style="cursor: default;">(C:)</span>
+                </div>
+
+                <ul id="folder-items" style="margin:6px 0 0 6px">
+                  <li style="color:#666;">Loading folders...</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div style="flex: 1; overflow-y: auto; margin: 0; padding: 8px; background: #fff; border:1px solid #ccc; min-height:120px; display:flex; flex-direction:column; gap:6px;">
+            <!-- 右侧 -->
+            <h3 id="window-main-title" style="margin:0 0 6px 0;font-size:14px;">Welcome</h3>
+            <div id="folder-files" style="display:flex;flex-wrap:wrap;gap:6px;font-size:12px;line-height:1.4;">
+              <p style="color:#666;margin:0;">Select a folder from the left to view files.</p>
+            </div>
+          </div>
+        </div>
+        <!-- 底部 status-bar -->
+        <div class="status-bar" style="padding:0 8px">
+          <p class="status-bar-field" id="window7-status-count" style="flex:0 0 120px;width:120px;min-width:120px">0 file(s)</p>
+          <p class="status-bar-field"></p>
+        </div>
+
+      </div>
+
+
+      <!-- Window 8 -->
+      <div class="window" id="window-8" style="margin-bottom:18px">
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">8</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body">
+
+        </div>
+      </div>
+
+
+      <!-- Window 9 -->
+      <div class="window" id="window-9" style="margin-bottom:18px">
+        <div class="title-bar">
+          <div style="display:flex;align-items:center;gap: 2px;">
+            <div class="title-bar-controls">
+              <img src="./assets/img/file.png" alt="icon">
+            </div>
+            <div class="title-bar-text">9</div>
+          </div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body" style="margin: 8px;">
+          <div style="display:flex;gap:6px;">
+            <div style="flex:0 0 140px; background:#fff; border:1px solid #ccc; padding:6px;">
+              <ul id="details-nav" style="list-style:none;padding-left:0;margin:0;display:flex;flex-direction:column;gap:4px;">
+                <li style="color:#666;">Loading...</li>
+              </ul>
+            </div>
+            <div style="flex:1; background:#fff; border:1px solid #ccc; padding:8px; min-height:120px;">
+              <h3 id="details-title" style="margin:0 0 6px 0;font-size:14px;">Loading...</h3>
+              <div id="details-content" style="display:flex;flex-direction:column;gap:6px;font-size:12px;line-height:1.4;">
+                <p style="color:#666;margin:0;">Please wait.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+    <script>
+      (function () {
+        const folderItemsContainer = document.getElementById("folder-items");
+        const fileGrid = document.getElementById("folder-files");
+        const statusCount = document.getElementById("window7-status-count");
+        const mainTitle = document.getElementById("window-main-title");
+        const topbarLinks = document.querySelectorAll("#window-main .topbar a[data-topic]");
+        if (!folderItemsContainer || !fileGrid || !statusCount) {
+          return;
+        }
+
+        const defaultFlexWrap = fileGrid.style.flexWrap || "";
+        const defaultFlexDirection = fileGrid.style.flexDirection || "";
+        let hasSelectedFolder = false;
+        let defaultFolderLines = ["Select a folder from the left to view files."];
+        let defaultContentTitle = "Welcome";
+        let detailGroupsById = null;
+
+        function setStatus(text) {
+          statusCount.textContent = text;
+        }
+
+        function setMainTitle(text) {
+          if (!mainTitle) {
+            return;
+          }
+          if (text === null) {
+            mainTitle.style.display = "none";
+            mainTitle.textContent = "";
+            return;
+          }
+          mainTitle.style.display = "";
+          mainTitle.textContent = text || "CV";
+        }
+
+        function setGridMode(mode) {
+          if (mode === "text") {
+            fileGrid.style.flexWrap = "nowrap";
+            fileGrid.style.flexDirection = "column";
+          } else {
+            fileGrid.style.flexWrap = defaultFlexWrap;
+            fileGrid.style.flexDirection = defaultFlexDirection;
+          }
+        }
+
+        function renderTextLines(lines, statusLabel, titleText) {
+          setGridMode("text");
+          fileGrid.innerHTML = "";
+          setMainTitle(titleText || statusLabel || "Info");
+          if (!lines || !lines.length) {
+            const p = document.createElement("p");
+            p.style.color = "#666";
+            p.style.margin = "0";
+            p.textContent = "Select a folder from the left to view files.";
+            fileGrid.appendChild(p);
+            setStatus("0 file(s)");
+            return;
+          }
+          lines.forEach(function (text) {
+            const p = document.createElement("p");
+            p.style.margin = "0 0 4px 0";
+            p.textContent = text;
+            fileGrid.appendChild(p);
+          });
+          setStatus(statusLabel || "Welcome");
+        }
+
+        function renderContactList(contacts, statusLabel, titleText) {
+          setGridMode("text");
+          fileGrid.innerHTML = "";
+          setMainTitle(titleText || statusLabel || "Contact");
+          if (!contacts || !contacts.length) {
+            renderTextLines(["No contact information available."], statusLabel || "Contact", titleText || statusLabel || "Contact");
+            return;
+          }
+
+          contacts.forEach(function (contact) {
+            const row = document.createElement("p");
+            row.style.margin = "0 0 4px 0";
+
+            const label = document.createElement("span");
+            label.style.fontWeight = "bold";
+            label.style.display = "inline-block";
+            label.style.minWidth = "80px";
+            label.textContent = (contact.label || contact.type || "") + ":";
+            row.appendChild(label);
+            row.appendChild(document.createTextNode(" "));
+
+            if (contact.href) {
+              const link = document.createElement("a");
+              link.href = contact.href;
+              link.textContent = contact.value || contact.href;
+              link.target = contact.type === "link" ? "_blank" : "_self";
+              link.rel = contact.type === "link" ? "noopener" : "";
+              row.appendChild(link);
+            } else {
+              const span = document.createElement("span");
+              span.textContent = contact.value || "";
+              row.appendChild(span);
+            }
+
+            fileGrid.appendChild(row);
+          });
+
+          setStatus(statusLabel || "Contact");
+        }
+
+        function showDefaultText() {
+          if (!hasSelectedFolder) {
+            const statusLabel = defaultFolderLines && defaultFolderLines.length ? defaultContentTitle : "0 file(s)";
+            renderTextLines(defaultFolderLines, statusLabel, defaultContentTitle);
+          }
+        }
+
+        window.setMainDefaultContent = function (lines, title) {
+          if (Array.isArray(lines) && lines.length) {
+            defaultFolderLines = lines;
+          }
+          if (title) {
+            defaultContentTitle = title;
+          }
+          showDefaultText();
+        };
+
+        function renderTopic(topicId) {
+          if (!topicId) {
+            return;
+          }
+          if (!detailGroupsById) {
+            renderTextLines(["Content is still loading."], "Loading", "Loading");
+            return;
+          }
+          const group = detailGroupsById[topicId];
+          if (!group) {
+            renderTextLines(["Nothing to show for this section."], "Info", "Info");
+            return;
+          }
+
+          hasSelectedFolder = false;
+          if (Array.isArray(group.contacts)) {
+            renderContactList(group.contacts, group.title || "Contact", group.title || "Contact");
+            return;
+          }
+          renderTextLines(group.items || [], group.title || "Info", group.title || "Info");
+        }
+
+        topbarLinks.forEach(function (link) {
+          link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const topic = link.getAttribute("data-topic");
+            renderTopic(topic);
+          });
+        });
+
+        function renderFiles(folder) {
+          setMainTitle(null);
+          setGridMode("grid");
+          fileGrid.innerHTML = "";
+          if (!folder.files || folder.files.length === 0) {
+            fileGrid.innerHTML = '<p style="color:#666;margin:0;">This folder is empty.</p>';
+            setStatus("0 file(s)");
+            hasSelectedFolder = true;
+            return;
+          }
+
+          folder.files.forEach(function (file) {
+            const tile = document.createElement("a");
+            tile.href = file.path;
+            tile.target = "_blank";
+            tile.rel = "noopener";
+            tile.style.cssText = "display:flex;flex-direction:column;align-items:center;width:60px;text-decoration:none;color:inherit;margin-bottom:6px;";
+            tile.innerHTML = '<img src="./assets/img/file.ico" alt="file" style="width:24px;height:24px;">' +
+              "<span>" + file.name + "</span>";
+            fileGrid.appendChild(tile);
+          });
+
+          setStatus(folder.files.length + " file(s)");
+          hasSelectedFolder = true;
+        }
+
+        function selectFolder(folder) {
+          hasSelectedFolder = true;
+          renderFiles(folder);
+        }
+
+        function renderFolders(folders) {
+          folderItemsContainer.innerHTML = "";
+          if (!folders.length) {
+            folderItemsContainer.innerHTML = '<li style="color:#666;">No folders found.</li>';
+            renderTextLines([], "0 file(s)", "Folders");
+            return;
+          }
+
+          folders.forEach(function (folder) {
+            const li = document.createElement("li");
+            const link = document.createElement("a");
+            link.href = folder.path || "#";
+            link.style.cssText = "display:flex;align-items:center;gap:6px;text-decoration:none;color:inherit;cursor:pointer;";
+            link.innerHTML = '<img src="./assets/img/folder.ico" alt="folder" style="width:16px;height:16px;">' +
+              "<span>" + folder.name + "</span>";
+            link.addEventListener("click", function (event) {
+              event.preventDefault();
+              selectFolder(folder);
+            });
+            li.appendChild(link);
+            folderItemsContainer.appendChild(li);
+          });
+
+          showDefaultText();
+        }
+
+        fetch("./assets/c_drive/index.json")
+          .then(function (res) {
+            if (!res.ok) {
+              throw new Error("Failed to load folders");
+            }
+            return res.json();
+          })
+          .then(function (data) {
+            renderFolders(data.folders || []);
+          })
+          .catch(function (error) {
+            folderItemsContainer.innerHTML = '<li style="color:red;">' + error.message + "</li>";
+            fileGrid.innerHTML = '<p style="color:red;margin:0;">Unable to load files.</p>';
+            setStatus("Error");
+          });
+
+        showDefaultText();
+
+        window.addEventListener("details-data-ready", function (event) {
+          const groups = Array.isArray(event.detail) ? event.detail : [];
+          detailGroupsById = groups.reduce(function (acc, group) {
+            if (group && group.id) {
+              acc[group.id] = group;
+            }
+            return acc;
+          }, {});
+
+          if (detailGroupsById.welcome) {
+            setMainDefaultContent(detailGroupsById.welcome.items || [], detailGroupsById.welcome.title || "Welcome");
+          }
+        });
+      })();
+
+      (function () {
+        const navList = document.getElementById("details-nav");
+        const titleEl = document.getElementById("details-title");
+        const contentEl = document.getElementById("details-content");
+        if (!navList || !titleEl || !contentEl) {
+          return;
+        }
+
+        let activeLink = null;
+
+        function setTitle(text) {
+          titleEl.textContent = text;
+        }
+
+        function clearContent(message) {
+          contentEl.innerHTML = "";
+          if (message) {
+            const p = document.createElement("p");
+            p.style.margin = "0";
+            p.textContent = message;
+            contentEl.appendChild(p);
+          }
+        }
+
+        function renderItems(items) {
+          clearContent();
+          items.forEach(function (text) {
+            const p = document.createElement("p");
+            p.style.margin = "0";
+            p.textContent = text;
+            contentEl.appendChild(p);
+          });
+        }
+
+        function renderContacts(contacts) {
+          clearContent();
+          const list = document.createElement("ul");
+          list.style.listStyle = "none";
+          list.style.padding = "0";
+          list.style.margin = "0";
+          contacts.forEach(function (contact) {
+            const li = document.createElement("li");
+            li.style.marginBottom = "6px";
+            const label = document.createElement("span");
+            label.style.display = "inline-block";
+            label.style.width = "90px";
+            label.style.fontWeight = "bold";
+            label.textContent = contact.label || contact.type || "";
+            li.appendChild(label);
+            if (contact.href) {
+              const link = document.createElement("a");
+              link.href = contact.href;
+              link.textContent = contact.value || contact.href;
+              link.target = contact.type === "link" ? "_blank" : "_self";
+              link.rel = contact.type === "link" ? "noopener" : "";
+              li.appendChild(link);
+            } else {
+              const span = document.createElement("span");
+              span.textContent = contact.value || "";
+              li.appendChild(span);
+            }
+            list.appendChild(li);
+          });
+          contentEl.appendChild(list);
+        }
+
+        function selectGroup(group, link) {
+          if (activeLink) {
+            activeLink.style.background = "";
+          }
+          if (link) {
+            link.style.background = "#c7ddff";
+            activeLink = link;
+          }
+
+          setTitle(group.title || group.id || "Details");
+          if (Array.isArray(group.items)) {
+            renderItems(group.items);
+          } else if (Array.isArray(group.contacts)) {
+            renderContacts(group.contacts);
+          } else {
+            clearContent("No content available.");
+          }
+        }
+
+        function renderNav(groups) {
+          navList.innerHTML = "";
+          if (!groups.length) {
+            const li = document.createElement("li");
+            li.style.color = "#666";
+            li.textContent = "No data";
+            navList.appendChild(li);
+            setTitle("Details");
+            clearContent("No groups to show.");
+            return;
+          }
+
+          groups.forEach(function (group, index) {
+            const li = document.createElement("li");
+            const link = document.createElement("a");
+            link.href = "#";
+            link.style.display = "block";
+            link.style.padding = "2px 4px";
+            link.style.textDecoration = "none";
+            link.style.color = "inherit";
+            link.style.cursor = "pointer";
+            link.style.fontSize = "12px";
+            link.textContent = group.title || group.id;
+            link.addEventListener("click", function (event) {
+              event.preventDefault();
+              selectGroup(group, link);
+            });
+            li.appendChild(link);
+            navList.appendChild(li);
+
+            if (index === 0) {
+              selectGroup(group, link);
+            }
+          });
+        }
+
+        fetch("./assets/details.json")
+          .then(function (res) {
+            if (!res.ok) {
+              throw new Error("Failed to load details");
+            }
+            return res.json();
+          })
+          .then(function (data) {
+            const groups = data.groups || [];
+            renderNav(groups);
+            window.dispatchEvent(new CustomEvent("details-data-ready", { detail: groups }));
+          })
+          .catch(function (error) {
+            navList.innerHTML = '<li style="color:red;">' + error.message + "</li>";
+            setTitle("Error");
+            clearContent("Unable to load details.");
+          });
+      })();
+    </script>
+  </body>
+</html>
